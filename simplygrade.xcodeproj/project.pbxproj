@@ -1,0 +1,354 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		33036EE22538B7C600AB5ABA /* simplygradeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EE12538B7C600AB5ABA /* simplygradeApp.swift */; };
+		33036EE42538B7C600AB5ABA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EE32538B7C600AB5ABA /* ContentView.swift */; };
+		33036EE62538B7C600AB5ABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33036EE52538B7C600AB5ABA /* Assets.xcassets */; };
+		33036EE92538B7C600AB5ABA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33036EE82538B7C600AB5ABA /* Preview Assets.xcassets */; };
+		33036EEB2538B7C600AB5ABA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EEA2538B7C600AB5ABA /* Persistence.swift */; };
+		33036EEE2538B7C600AB5ABA /* simplygrade.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		33036EDE2538B7C600AB5ABA /* simplygrade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = simplygrade.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33036EE12538B7C600AB5ABA /* simplygradeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simplygradeApp.swift; sourceTree = "<group>"; };
+		33036EE32538B7C600AB5ABA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		33036EE52538B7C600AB5ABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33036EE82538B7C600AB5ABA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		33036EEA2538B7C600AB5ABA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		33036EED2538B7C600AB5ABA /* simplygrade.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = simplygrade.xcdatamodel; sourceTree = "<group>"; };
+		33036EEF2538B7C600AB5ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33036EDB2538B7C600AB5ABA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33036ED52538B7C600AB5ABA = {
+			isa = PBXGroup;
+			children = (
+				33036EE02538B7C600AB5ABA /* simplygrade */,
+				33036EDF2538B7C600AB5ABA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		33036EDF2538B7C600AB5ABA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33036EDE2538B7C600AB5ABA /* simplygrade.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33036EE02538B7C600AB5ABA /* simplygrade */ = {
+			isa = PBXGroup;
+			children = (
+				33036EE12538B7C600AB5ABA /* simplygradeApp.swift */,
+				33036EE32538B7C600AB5ABA /* ContentView.swift */,
+				33036EE52538B7C600AB5ABA /* Assets.xcassets */,
+				33036EEA2538B7C600AB5ABA /* Persistence.swift */,
+				33036EEF2538B7C600AB5ABA /* Info.plist */,
+				33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */,
+				33036EE72538B7C600AB5ABA /* Preview Content */,
+			);
+			path = simplygrade;
+			sourceTree = "<group>";
+		};
+		33036EE72538B7C600AB5ABA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				33036EE82538B7C600AB5ABA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33036EDD2538B7C600AB5ABA /* simplygrade */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33036EF22538B7C600AB5ABA /* Build configuration list for PBXNativeTarget "simplygrade" */;
+			buildPhases = (
+				33036EDA2538B7C600AB5ABA /* Sources */,
+				33036EDB2538B7C600AB5ABA /* Frameworks */,
+				33036EDC2538B7C600AB5ABA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = simplygrade;
+			productName = simplygrade;
+			productReference = 33036EDE2538B7C600AB5ABA /* simplygrade.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		33036ED62538B7C600AB5ABA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					33036EDD2538B7C600AB5ABA = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 33036ED92538B7C600AB5ABA /* Build configuration list for PBXProject "simplygrade" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 33036ED52538B7C600AB5ABA;
+			productRefGroup = 33036EDF2538B7C600AB5ABA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				33036EDD2538B7C600AB5ABA /* simplygrade */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		33036EDC2538B7C600AB5ABA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33036EE92538B7C600AB5ABA /* Preview Assets.xcassets in Resources */,
+				33036EE62538B7C600AB5ABA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33036EDA2538B7C600AB5ABA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33036EEB2538B7C600AB5ABA /* Persistence.swift in Sources */,
+				33036EEE2538B7C600AB5ABA /* simplygrade.xcdatamodeld in Sources */,
+				33036EE42538B7C600AB5ABA /* ContentView.swift in Sources */,
+				33036EE22538B7C600AB5ABA /* simplygradeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		33036EF02538B7C600AB5ABA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		33036EF12538B7C600AB5ABA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		33036EF32538B7C600AB5ABA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"simplygrade/Preview Content\"";
+				DEVELOPMENT_TEAM = H33FK7Z68T;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = simplygrade/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lukashecke.simplygrade;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		33036EF42538B7C600AB5ABA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"simplygrade/Preview Content\"";
+				DEVELOPMENT_TEAM = H33FK7Z68T;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = simplygrade/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lukashecke.simplygrade;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		33036ED92538B7C600AB5ABA /* Build configuration list for PBXProject "simplygrade" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33036EF02538B7C600AB5ABA /* Debug */,
+				33036EF12538B7C600AB5ABA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33036EF22538B7C600AB5ABA /* Build configuration list for PBXNativeTarget "simplygrade" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33036EF32538B7C600AB5ABA /* Debug */,
+				33036EF42538B7C600AB5ABA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				33036EED2538B7C600AB5ABA /* simplygrade.xcdatamodel */,
+			);
+			currentVersion = 33036EED2538B7C600AB5ABA /* simplygrade.xcdatamodel */;
+			path = simplygrade.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 33036ED62538B7C600AB5ABA /* Project object */;
+}
