@@ -2,7 +2,7 @@
 //  Persistence.swift
 //  simplygrade
 //
-//  Created by Development on 15.10.20.
+//  Created by Lukas Hecke on 15.10.20.
 //
 
 import CoreData
@@ -14,8 +14,8 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = GradeItem(context: viewContext)
+            newItem.subject = "TestSubject"
         }
         do {
             try viewContext.save()
@@ -26,6 +26,13 @@ struct PersistenceController {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
         return result
+    }()
+    
+    static let testGraddeItem: GradeItem = {
+        let testGradeItem = GradeItem(context: PersistenceController.preview.container.viewContext)
+        testGradeItem.subject = "TestGrade"
+        testGradeItem.timeStamp = Date()
+        return testGradeItem
     }()
 
     let container: NSPersistentContainer

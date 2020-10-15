@@ -13,6 +13,7 @@
 		33036EE92538B7C600AB5ABA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33036EE82538B7C600AB5ABA /* Preview Assets.xcassets */; };
 		33036EEB2538B7C600AB5ABA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EEA2538B7C600AB5ABA /* Persistence.swift */; };
 		33036EEE2538B7C600AB5ABA /* simplygrade.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */; };
+		33036EF82538BFDD00AB5ABA /* AddGradeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		33036EEA2538B7C600AB5ABA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		33036EED2538B7C600AB5ABA /* simplygrade.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = simplygrade.xcdatamodel; sourceTree = "<group>"; };
 		33036EEF2538B7C600AB5ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGradeItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +58,12 @@
 		33036EE02538B7C600AB5ABA /* simplygrade */ = {
 			isa = PBXGroup;
 			children = (
+				33555BD82538DB2C00640DBF /* Models */,
+				33555BD72538DB0D00640DBF /* Views */,
 				33036EE12538B7C600AB5ABA /* simplygradeApp.swift */,
-				33036EE32538B7C600AB5ABA /* ContentView.swift */,
-				33036EE52538B7C600AB5ABA /* Assets.xcassets */,
 				33036EEA2538B7C600AB5ABA /* Persistence.swift */,
+				33036EE52538B7C600AB5ABA /* Assets.xcassets */,
 				33036EEF2538B7C600AB5ABA /* Info.plist */,
-				33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */,
 				33036EE72538B7C600AB5ABA /* Preview Content */,
 			);
 			path = simplygrade;
@@ -73,6 +75,23 @@
 				33036EE82538B7C600AB5ABA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		33555BD72538DB0D00640DBF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				33036EE32538B7C600AB5ABA /* ContentView.swift */,
+				33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		33555BD82538DB2C00640DBF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +167,7 @@
 				33036EEE2538B7C600AB5ABA /* simplygrade.xcdatamodeld in Sources */,
 				33036EE42538B7C600AB5ABA /* ContentView.swift in Sources */,
 				33036EE22538B7C600AB5ABA /* simplygradeApp.swift in Sources */,
+				33036EF82538BFDD00AB5ABA /* AddGradeItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

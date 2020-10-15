@@ -2,7 +2,7 @@
 //  simplygradeApp.swift
 //  simplygrade
 //
-//  Created by Development on 15.10.20.
+//  Created by Lukas Hecke on 15.10.20.
 //
 
 import SwiftUI
