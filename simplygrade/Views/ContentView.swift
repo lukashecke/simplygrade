@@ -35,8 +35,7 @@ struct GradesList: View {
             .onDelete(perform: { indexSet in
                 for index in indexSet {
                     let gradeItemToDelete = gradeItems[index]
-                    PersistenceController.shared.container.viewContext.delete(gradeItemToDelete)
-                    try? PersistenceController.shared.container.viewContext.save()
+                    GradeItemManager.shared.delete(gradeItem: gradeItemToDelete)
                 }
             })
             Text("Insgesamt \(gradeItems.count) Noten")

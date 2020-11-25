@@ -14,6 +14,7 @@
 		33036EEB2538B7C600AB5ABA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EEA2538B7C600AB5ABA /* Persistence.swift */; };
 		33036EEE2538B7C600AB5ABA /* simplygrade.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */; };
 		33036EF82538BFDD00AB5ABA /* AddGradeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */; };
+		33053392256ECAC5001721A3 /* GradeItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33053391256ECAC5001721A3 /* GradeItemManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		33036EED2538B7C600AB5ABA /* simplygrade.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = simplygrade.xcdatamodel; sourceTree = "<group>"; };
 		33036EEF2538B7C600AB5ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGradeItemView.swift; sourceTree = "<group>"; };
+		33053391256ECAC5001721A3 /* GradeItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItemManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				33036EE52538B7C600AB5ABA /* Assets.xcassets */,
 				33036EEF2538B7C600AB5ABA /* Info.plist */,
 				33036EE72538B7C600AB5ABA /* Preview Content */,
+				33053391256ECAC5001721A3 /* GradeItemManager.swift */,
 			);
 			path = simplygrade;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33053392256ECAC5001721A3 /* GradeItemManager.swift in Sources */,
 				33036EEB2538B7C600AB5ABA /* Persistence.swift in Sources */,
 				33036EEE2538B7C600AB5ABA /* simplygrade.xcdatamodeld in Sources */,
 				33036EE42538B7C600AB5ABA /* ContentView.swift in Sources */,

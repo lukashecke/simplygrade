@@ -7,16 +7,18 @@
 
 import SwiftUI
 
+// Quasi Default der beim Cancel automatisch verworfen wird
+struct GradeItemDummy {
+    var subject = "Fach"
+    var timeStamp = Date()
+    var value = "0"
+}
+
 struct AddGradeItemView: View {
 //    Perfekt für diesen Case, nur nicht für CoreData...
 //    @StateObject var gradeItem = GradeItem()
     
-    // Quasi Default der beim Cancel automatisch verworfen wird
-    struct GradeItemDummy {
-        var subject = "Fach"
-        var timeStamp = Date()
-        var value = "0"
-    }
+    
     
     @State private var gradeItemDummy = GradeItemDummy()
     
@@ -35,13 +37,7 @@ struct AddGradeItemView: View {
                 showAddGradeView = false
             },
             trailing: Button("Save") {
-                //TODO:  In PersistenceController?
-                let gradeItem = GradeItem(context: PersistenceController.shared.container.viewContext)
-                gradeItem.subject = gradeItemDummy.subject
-                gradeItem.timeStamp = gradeItemDummy.timeStamp
-//                // TODO das ändern und imm dummy auch schon als int
-                gradeItem.value=Int16(gradeItemDummy.value)!
-                try? PersistenceController.shared.container.viewContext.save()
+                GradeItemManager.shared.addGradeItem(fromDummy: gradeItemDummy)
                 showAddGradeView = false
             }
         )
