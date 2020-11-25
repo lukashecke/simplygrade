@@ -6,42 +6,61 @@
 //
 
 import SwiftUI
-import CoreData
+//import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext)
-    var managedObjectContext: NSManagedObjectContext
-    
-    @FetchRequest(
-        entity: GradeItem.entity(), sortDescriptors:[NSSortDescriptor(key: "timeStamp", ascending: true)]
-    )
-    var gradeItems: FetchedResults<GradeItem>
     
     @State private var showAddGradeView = false
     
     var body: some View {
         NavigationView {
-            List(gradeItems) { gradeItem in
-                GradeCell(gradeItem: gradeItem)
-            }
-            .navigationTitle("Meine Noten")
-            .navigationBarItems(trailing: Button("Add") {
-                showAddGradeView = true
-            })
-            .sheet(isPresented: $showAddGradeView, content: {
-                AddGradeItemView(showAddGradeView: $showAddGradeView)
-            })
+            GradesList(showAddGradeView: $showAddGradeView)
         }
     }
 }
+
+struct GradesList: View {
+    @FetchRequest(
+        entity: GradeItem.entity(), sortDescriptors:[NSSortDescriptor(key: "timeStamp", ascending: true)]
+    )
+    private var gradeItems: FetchedResults<GradeItem>
+    
+    @Binding var showAddGradeView: Bool
+    
+    var body: some View {
+        List {
+            ForEach(gradeItems) { gradeItem in
+                GradeCell(gradeItem: gradeItem)
+            }
+            .onDelete(perform: { indexSet in
+                for index in indexSet {
+                    let gradeItemToDelete = gradeItems[index]
+                    PersistenceController.shared.container.viewContext.delete(gradeItemToDelete)
+                    try? PersistenceController.shared.container.viewContext.save()
+                }
+            })
+            Text("Insgesamt \(gradeItems.count) Noten")
+        }
+        
+        .navigationTitle("Meine Noten")
+        .navigationBarItems(leading: EditButton(), trailing: Button("Add") {
+            showAddGradeView = true
+        })
+        .sheet(isPresented: $showAddGradeView, content: {
+            AddGradeItemView(showAddGradeView: $showAddGradeView)
+        })
+    }
+}
+
 
 struct GradeCell: View {
     @ObservedObject var gradeItem: GradeItem
     
     var body: some View {
                 HStack {
-                    Text("1")
-//                    Text(gradeItem.timeStamp!, style: .date)
+                    // TODO: geht das schöner, ja!
+                    Text(String(gradeItem.value))
+                    Text(gradeItem.timeStamp!, style: .date)
                     Text(gradeItem.subject!)
                 }
     }
@@ -58,3 +77,4 @@ struct ContentView_Previews: PreviewProvider {
         }
     }
 }
+

@@ -15,6 +15,7 @@ struct AddGradeItemView: View {
     struct GradeItemDummy {
         var subject = "Fach"
         var timeStamp = Date()
+        var value = "0"
     }
     
     @State private var gradeItemDummy = GradeItemDummy()
@@ -24,7 +25,9 @@ struct AddGradeItemView: View {
     var body: some View {
         NavigationView {
         Form {
-            TextField("Note", text: $gradeItemDummy.subject)
+            TextField("Fach", text: $gradeItemDummy.subject)
+            DatePicker("Datum", selection: $gradeItemDummy.timeStamp)
+            TextField("Note", text: $gradeItemDummy.value).keyboardType(.decimalPad)
         }
         .navigationTitle("Neue Note")
         .navigationBarItems(
@@ -36,6 +39,8 @@ struct AddGradeItemView: View {
                 let gradeItem = GradeItem(context: PersistenceController.shared.container.viewContext)
                 gradeItem.subject = gradeItemDummy.subject
                 gradeItem.timeStamp = gradeItemDummy.timeStamp
+//                // TODO das ändern und imm dummy auch schon als int
+                gradeItem.value=Int16(gradeItemDummy.value)!
                 try? PersistenceController.shared.container.viewContext.save()
                 showAddGradeView = false
             }
