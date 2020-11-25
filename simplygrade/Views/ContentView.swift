@@ -27,6 +27,8 @@ struct GradesList: View {
     
     @Binding var showAddGradeView: Bool
     
+    @Environment(\.editMode) var editMode
+    
     var body: some View {
         List {
             ForEach(gradeItems) { gradeItem in
@@ -42,9 +44,16 @@ struct GradesList: View {
         }
         
         .navigationTitle("Meine Noten")
-        .navigationBarItems(leading: EditButton(), trailing: Button("Add") {
-            showAddGradeView = true
-        })
+        .navigationBarItems(
+            leading:
+                EditButton()
+                    .disabled(gradeItems.isEmpty),
+            trailing:
+                Button("Add") {
+                    showAddGradeView = true
+                }
+                .disabled(editMode?.wrappedValue.isEditing ?? false) // TODO: geht noch nicht?
+        )
         .sheet(isPresented: $showAddGradeView, content: {
             AddGradeItemView(showAddGradeView: $showAddGradeView)
         })
