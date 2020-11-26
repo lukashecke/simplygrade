@@ -19,6 +19,7 @@
 		33053398256ED781001721A3 /* SchoolYearsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33053397256ED781001721A3 /* SchoolYearsList.swift */; };
 		3305339B256EDCF8001721A3 /* CustomEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305339A256EDCF8001721A3 /* CustomEditButton.swift */; };
 		3305339E256EE09D001721A3 /* AddSchoolYearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305339D256EE09D001721A3 /* AddSchoolYearView.swift */; };
+		33CD2EC22570288900A414ED /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD2EC12570288900A414ED /* BindingExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		33053397256ED781001721A3 /* SchoolYearsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolYearsList.swift; sourceTree = "<group>"; };
 		3305339A256EDCF8001721A3 /* CustomEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditButton.swift; sourceTree = "<group>"; };
 		3305339D256EE09D001721A3 /* AddSchoolYearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSchoolYearView.swift; sourceTree = "<group>"; };
+		33CD2EC12570288900A414ED /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				33053397256ED781001721A3 /* SchoolYearsList.swift */,
 				3305339A256EDCF8001721A3 /* CustomEditButton.swift */,
 				3305339D256EE09D001721A3 /* AddSchoolYearView.swift */,
+				33CD2EC12570288900A414ED /* BindingExtension.swift */,
 			);
 			path = simplygrade;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				33053398256ED781001721A3 /* SchoolYearsList.swift in Sources */,
 				3305339B256EDCF8001721A3 /* CustomEditButton.swift in Sources */,
 				33053392256ECAC5001721A3 /* GradeItemManager.swift in Sources */,
+				33CD2EC22570288900A414ED /* BindingExtension.swift in Sources */,
 				33036EEB2538B7C600AB5ABA /* Persistence.swift in Sources */,
 				33036EEE2538B7C600AB5ABA /* simplygrade.xcdatamodeld in Sources */,
 				33036EE42538B7C600AB5ABA /* ContentView.swift in Sources */,
