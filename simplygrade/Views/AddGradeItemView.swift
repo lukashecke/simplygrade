@@ -11,7 +11,7 @@ import SwiftUI
 struct GradeItemDummy {
     var subject = "Fach"
     var timeStamp = Date()
-    var value = "0"
+    var value = 0
 }
 
 struct AddGradeItemView: View {
@@ -24,12 +24,24 @@ struct AddGradeItemView: View {
     
     @Binding var showAddGradeView: Bool
     
+    var gradeOptions = [1,2,3,4,5,6]
+    
     var body: some View {
         NavigationView {
         Form {
             TextField("Fach", text: $gradeItemDummy.subject)
-            DatePicker("Datum", selection: $gradeItemDummy.timeStamp)
-            TextField("Note", text: $gradeItemDummy.value).keyboardType(.decimalPad)
+            DatePicker("Datum", selection: $gradeItemDummy.timeStamp, displayedComponents: .date)
+            Stepper(value: $gradeItemDummy.value, in: 1...6) {
+                Text("Note: \(gradeItemDummy.value)")
+            }
+//                Picker("Note", selection: $gradeItemDummy.value) {
+//                                                ForEach(0..<gradeOptions.count) {
+//                                                    Text(String(self.gradeOptions[$0]))
+//                                                }
+//                                            }
+            
+            
+//            TextField("Note", text: $gradeItemDummy.value).keyboardType(.decimalPad)
         }
         .navigationTitle("Neue Note")
         .navigationBarItems(
@@ -45,8 +57,8 @@ struct AddGradeItemView: View {
     }
 }
 
-struct AddGradeView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddGradeItemView(showAddGradeView: .constant(false))
-    }
-}
+//struct AddGradeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddGradeItemView(showAddGradeView: .constant(false))
+//    }
+//}

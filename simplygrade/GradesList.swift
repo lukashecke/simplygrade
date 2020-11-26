@@ -63,12 +63,20 @@ struct GradeCell: View {
     @ObservedObject var gradeItem: GradeItem
     
     var body: some View {
-                HStack {
-                    // TODO: geht das schöner, ja!
-                    Text(String(gradeItem.value))
-                    Text(gradeItem.timeStamp!, style: .date)
-                    Text(gradeItem.subject!)
-                }
+        HStack {
+            Text(gradeItem.subject ?? "")
+                .font(.title)
+            VStack(alignment: .leading) {
+                // TODO: dynamisieren
+                Text("Schulaufgabe")
+                Text(gradeItem.timeStamp ?? Date(), style: .date)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+        }
+            Spacer()
+            Text(String(gradeItem.value))
+                .font(.title)
+        }
     }
 }
 
