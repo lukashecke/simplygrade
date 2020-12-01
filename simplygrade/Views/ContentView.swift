@@ -14,12 +14,12 @@ struct ContentView: View {
             GradesListNavigationView()
                 .tabItem {
                     Text("Noten")
-                    Image(systemName: "cart.fill") // TODO: was passendes suchen
+                    Image(systemName: "doc.plaintext") // TODO: was passendes suchen
                 }
             SchoolYearsListNavigationView()
                 .tabItem {
                     Text("Schuljahre")
-                    Image(systemName: "building.2.fill") // TODO: was passendes suchen
+                    Image(systemName: "calendar") // TODO: was passendes suchen
                 }
         }
     }

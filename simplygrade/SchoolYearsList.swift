@@ -22,13 +22,21 @@ struct SchoolYearsList: View {
     )
     private var schoolYears: FetchedResults<SchoolYear>
     
+    @State private var showAddSchoolYearView = false
+    
     var body: some View {
         List {
             ForEach(schoolYears) { schoolYear in
                 Text(schoolYear.name ?? "")
             }
         }
+        .navigationBarItems(trailing: Button("Add") {
+            showAddSchoolYearView = true
+        })
         .navigationTitle("Schuljahre")
+        .sheet(isPresented: $showAddSchoolYearView) {
+            AddSchoolYearView(showAddScholYearView: $showAddSchoolYearView) 
+        }
     }
 }
 

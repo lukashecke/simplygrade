@@ -10,7 +10,10 @@ import SwiftUI
 struct AddSchoolYearView: View {
     @StateObject private var newSchoolYear = SchoolYear(context: PersistenceController.shared.managedObjectContext)
     
+    @Binding var showAddScholYearView: Bool
+    
     var body: some View {
+        NavigationView {
         Form {
             Section(header: Text("Name")) {
                 TextField("Placeholder", text: Binding<String>.convertOptionalString($newSchoolYear.name))
@@ -20,11 +23,21 @@ struct AddSchoolYearView: View {
                     .frame(height: 300)
             }
         }
+        .navigationBarItems(
+            leading: Button("Cancel") {
+                SchoolYearsManager.shared.delete(schoolYear: newSchoolYear)
+                showAddScholYearView = false
+            },
+            trailing: Button("Save") {
+                PersistenceController.shared.saveContext()
+                showAddScholYearView = false
+            })
+    }
     }
 }
 
 struct AddSchoolYearView_Previews: PreviewProvider {
     static var previews: some View {
-        AddSchoolYearView()
+        AddSchoolYearView(showAddScholYearView: .constant(true))
     }
 }

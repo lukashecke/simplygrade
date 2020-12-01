@@ -20,6 +20,7 @@
 		3305339B256EDCF8001721A3 /* CustomEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305339A256EDCF8001721A3 /* CustomEditButton.swift */; };
 		3305339E256EE09D001721A3 /* AddSchoolYearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305339D256EE09D001721A3 /* AddSchoolYearView.swift */; };
 		33CD2EC22570288900A414ED /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD2EC12570288900A414ED /* BindingExtension.swift */; };
+		33FFD6552576A5D5005F673B /* SchoolYearsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFD6542576A5D5005F673B /* SchoolYearsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		3305339A256EDCF8001721A3 /* CustomEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditButton.swift; sourceTree = "<group>"; };
 		3305339D256EE09D001721A3 /* AddSchoolYearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSchoolYearView.swift; sourceTree = "<group>"; };
 		33CD2EC12570288900A414ED /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
+		33FFD6542576A5D5005F673B /* SchoolYearsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolYearsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				3305339A256EDCF8001721A3 /* CustomEditButton.swift */,
 				3305339D256EE09D001721A3 /* AddSchoolYearView.swift */,
 				33CD2EC12570288900A414ED /* BindingExtension.swift */,
+				33FFD6542576A5D5005F673B /* SchoolYearsManager.swift */,
 			);
 			path = simplygrade;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			files = (
 				33053398256ED781001721A3 /* SchoolYearsList.swift in Sources */,
 				3305339B256EDCF8001721A3 /* CustomEditButton.swift in Sources */,
+				33FFD6552576A5D5005F673B /* SchoolYearsManager.swift in Sources */,
 				33053392256ECAC5001721A3 /* GradeItemManager.swift in Sources */,
 				33CD2EC22570288900A414ED /* BindingExtension.swift in Sources */,
 				33036EEB2538B7C600AB5ABA /* Persistence.swift in Sources */,
