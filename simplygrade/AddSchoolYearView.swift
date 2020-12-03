@@ -10,6 +10,8 @@ import SwiftUI
 struct AddSchoolYearView: View {
     @StateObject private var newSchoolYear = SchoolYear(context: PersistenceController.shared.managedObjectContext)
     
+    @State private var didDisappearWithButton = false
+    
     @Binding var showAddScholYearView: Bool
     
     var body: some View {
@@ -25,14 +27,28 @@ struct AddSchoolYearView: View {
         }
         .navigationBarItems(
             leading: Button("Cancel") {
-                SchoolYearsManager.shared.delete(schoolYear: newSchoolYear)
-                showAddScholYearView = false
+                hideAddSchoolYearView(shouldSaveNewSchoolYear: false)
             },
             trailing: Button("Save") {
-                PersistenceController.shared.saveContext()
-                showAddScholYearView = false
-            })
+                hideAddSchoolYearView(shouldSaveNewSchoolYear: true)
+            }
+        )
     }
+        .onDisappear {
+            if !didDisappearWithButton {
+                hideAddSchoolYearView(shouldSaveNewSchoolYear: false)
+            }
+        }
+    }
+    
+    private func hideAddSchoolYearView(shouldSaveNewSchoolYear: Bool) {
+        didDisappearWithButton = true
+        if shouldSaveNewSchoolYear {
+            PersistenceController.shared.saveContext()
+        } else {
+            SchoolYearsManager.shared.delete(schoolYear: newSchoolYear)
+        }
+        showAddScholYearView = false
     }
 }
 
