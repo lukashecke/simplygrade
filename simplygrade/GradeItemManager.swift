@@ -17,7 +17,7 @@ class GradeItemManager {
         addGradeItem(withSubject: dummy.subject, timeStamp: dummy.timeStamp, value: dummy.value)
     }
     
-    func addGradeItem(withSubject subject: String, timeStamp : Date, value: Int) {
+    func addGradeItem(withSubject subject: String, timeStamp : Date, value: Int16) {
         let gradeItem = GradeItem(context: PersistenceController.shared.managedObjectContext)
         gradeItem.subject = subject
         gradeItem.timeStamp = timeStamp

@@ -11,7 +11,7 @@ import SwiftUI
 struct GradeItemDummy {
     var subject = "Fach"
     var timeStamp = Date()
-    var value = 0
+    var value = Int16(0)
 }
 
 struct AddGradeItemView: View {
@@ -28,12 +28,7 @@ struct AddGradeItemView: View {
     
     var body: some View {
         NavigationView {
-        Form {
-            TextField("Fach", text: $gradeItemDummy.subject)
-            DatePicker("Datum", selection: $gradeItemDummy.timeStamp, displayedComponents: .date)
-            Stepper(value: $gradeItemDummy.value, in: 1...6) {
-                Text("Note: \(gradeItemDummy.value)")
-            }
+            GradeItemView(subject: $gradeItemDummy.subject, timeStamp: $gradeItemDummy.timeStamp, value: $gradeItemDummy.value)
 //                Picker("Note", selection: $gradeItemDummy.value) {
 //                                                ForEach(0..<gradeOptions.count) {
 //                                                    Text(String(self.gradeOptions[$0]))
@@ -42,7 +37,6 @@ struct AddGradeItemView: View {
             
             
 //            TextField("Note", text: $gradeItemDummy.value).keyboardType(.decimalPad)
-        }
         .navigationTitle("Neue Note")
         .navigationBarItems(
             leading: Button("Canel") {
@@ -61,18 +55,29 @@ struct EditGradeItemView : View {
     @ObservedObject var gradeItem: GradeItem
     
     var body: some View {
-        Form {
-            TextField("Fach", text: $gradeItem.subject.toNonOptionalString())
-            DatePicker("Datum", selection: $gradeItem.timeStamp.toNonOptionalDate(), displayedComponents: .date)
-            Stepper(value: $gradeItem.value, in: 1...6) {
-                Text("Note: \(gradeItem.value)")
-            }
-        }
+        GradeItemView(subject: $gradeItem.subject.toNonOptionalString(), timeStamp: $gradeItem.timeStamp.toNonOptionalDate(), value: $gradeItem.value)
         .navigationTitle("Note bearbeiten")
         .onDisappear {
             PersistenceController.shared.saveContext()
         }
     }
+}
+
+
+struct GradeItemView: View {
+    @Binding var subject: String
+    @Binding var timeStamp: Date
+    @Binding var value: Int16
+    
+    var body: some View {
+        Form {
+            TextField("Fach", text: $subject)
+            DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
+            Stepper(value: $value, in: 1...6) {
+                Text("Note: \(value)")
+            }
+    }
+}
 }
 
 //struct AddGradeView_Previews: PreviewProvider {
