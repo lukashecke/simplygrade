@@ -18,7 +18,7 @@ struct AddSchoolYearView: View {
         NavigationView {
         Form {
             Section(header: Text("Name")) {
-                TextField("Placeholder", text: Binding<String>.convertOptionalString($newSchoolYear.name))
+                TextField("Placeholder", text: $newSchoolYear.name.toNonOptionalString())
             }
             Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
                 TextEditor(text: .constant("Placeholder"))
