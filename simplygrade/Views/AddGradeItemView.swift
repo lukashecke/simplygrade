@@ -57,6 +57,24 @@ struct AddGradeItemView: View {
     }
 }
 
+struct EditGradeItemView : View {
+    @ObservedObject var gradeItem: GradeItem
+    
+    var body: some View {
+        Form {
+            TextField("Fach", text: $gradeItem.subject.toNonOptionalString())
+            DatePicker("Datum", selection: $gradeItem.timeStamp.toNonOptionalDate(), displayedComponents: .date)
+            Stepper(value: $gradeItem.value, in: 1...6) {
+                Text("Note: \(gradeItem.value)")
+            }
+        }
+        .navigationTitle("Note bearbeiten")
+        .onDisappear {
+            PersistenceController.shared.saveContext()
+        }
+    }
+}
+
 //struct AddGradeView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AddGradeItemView(showAddGradeView: .constant(false))

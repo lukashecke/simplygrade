@@ -30,7 +30,7 @@ struct GradesList: View {
     var body: some View {
         List {
             ForEach(gradeItems) { gradeItem in
-                GradeCell(gradeItem: gradeItem)
+                GradeNavigationCell(gradeItem: gradeItem)
             }
             .onDelete(perform: { indexSet in
                 for index in indexSet {
@@ -58,6 +58,15 @@ struct GradesList: View {
     }
 }
 
+struct GradeNavigationCell: View {
+    let gradeItem: GradeItem
+    
+    var body: some View {
+        NavigationLink(destination: EditGradeItemView(gradeItem: gradeItem)) {
+            GradeCell(gradeItem:  gradeItem)
+        }
+    }
+}
 
 struct GradeCell: View {
     @ObservedObject var gradeItem: GradeItem
