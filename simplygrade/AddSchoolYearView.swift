@@ -26,10 +26,10 @@ struct AddSchoolYearView: View {
             }
         }
         .navigationBarItems(
-            leading: Button("Cancel") {
+            leading: Button("Abbrechen") {
                 hideAddSchoolYearView(shouldSaveNewSchoolYear: false)
             },
-            trailing: Button("Save") {
+            trailing: Button("Sichern") {
                 hideAddSchoolYearView(shouldSaveNewSchoolYear: true)
             }
         )

@@ -39,10 +39,10 @@ struct AddGradeItemView: View {
 //            TextField("Note", text: $gradeItemDummy.value).keyboardType(.decimalPad)
         .navigationTitle("Neue Note")
         .navigationBarItems(
-            leading: Button("Canel") {
+            leading: Button("Abbrechen") {
                 showAddGradeView = false
             },
-            trailing: Button("Save") {
+            trailing: Button("Sichern") {
                 GradeItemManager.shared.addGradeItem(fromDummy: gradeItemDummy)
                 showAddGradeView = false
             }
@@ -73,6 +73,7 @@ struct GradeItemView: View {
         Form {
             TextField("Fach", text: $subject)
             DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
+                .environment(\.locale, Locale.init(identifier: "de"))
             Stepper(value: $value, in: 1...6) {
                 Text("Note: \(value)")
             }

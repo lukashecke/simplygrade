@@ -47,8 +47,10 @@ struct GradesList: View {
                 CustomEditButton()
                     .disabled(gradeItems.isEmpty),
             trailing:
-                Button("Add") {
+                Button(action: {
                     showAddGradeView = true
+                }){
+                    Image(systemName: "plus").imageScale(.large)
                 }
                 .disabled(editMode?.wrappedValue.isEditing ?? false) // TODO: geht noch nicht?
         )

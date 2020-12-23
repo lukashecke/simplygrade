@@ -20,10 +20,12 @@ struct CustomEditButton: View {
                 editMode?.wrappedValue = isEditing ? .inactive : .active
             }
         }, label: {
-            Image(systemName: isEditing ? "pencil.circle.fill": "pencil.circle")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 24)
+//            Image(systemName: isEditing ? "pencil.circle.fill": "pencil.circle")
+//                .resizable()
+//                .scaledToFit()
+//                .frame(height: 24)
+            Text(isEditing ? "Fertig" : "Bearbeiten")
+                .multilineTextAlignment(TextAlignment.leading) // TODO: Warum funktioniert nicht?
         })
     }
 }

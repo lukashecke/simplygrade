@@ -30,8 +30,10 @@ struct SchoolYearsList: View {
                 Text(schoolYear.name ?? "")
             }
         }
-        .navigationBarItems(trailing: Button("Add") {
+        .navigationBarItems(trailing: Button(action: {
             showAddSchoolYearView = true
+        }){
+            Image(systemName: "plus").imageScale(.large)
         })
         .navigationTitle("Schuljahre")
         .sheet(isPresented: $showAddSchoolYearView) {
