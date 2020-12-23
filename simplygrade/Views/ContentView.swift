@@ -15,7 +15,7 @@ struct ContentView: View {
                 .tabItem {
                     Text("Noten")
                     Image(systemName: "doc.plaintext") // TODO: was passendes suchen
-                }
+                } // .listStyle(InsetGroupedListStyle())
             SchoolYearsListNavigationView()
                 .tabItem {
                     Text("Schuljahre")

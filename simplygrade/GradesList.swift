@@ -19,7 +19,7 @@ struct GradesListNavigationView: View {
 
 struct GradesList: View {
     @FetchRequest(
-        entity: GradeItem.entity(), sortDescriptors:[NSSortDescriptor(key: "timeStamp", ascending: true)]
+        entity: GradeItem.entity(), sortDescriptors:[NSSortDescriptor(key: "timeStamp", ascending: false)]
     )
     private var gradeItems: FetchedResults<GradeItem>
     
@@ -40,6 +40,8 @@ struct GradesList: View {
             })
             Text("Insgesamt \(gradeItems.count) Noten")
         }
+        // TODO: Überlegen, ob PlainListStyle
+//        .listStyle(PlainListStyle())
         
         .navigationTitle("Meine Noten")
         .navigationBarItems(
