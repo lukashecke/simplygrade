@@ -83,6 +83,7 @@ struct GradeCell: View {
                 Text(gradeItem.timeStamp ?? Date(), style: .date)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                    .environment(\.locale, Locale.init(identifier: "de"))
         }
             Spacer()
             Text(String(gradeItem.value))
