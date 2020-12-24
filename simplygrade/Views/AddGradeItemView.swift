@@ -24,6 +24,8 @@ struct AddGradeItemView: View {
     
     @Binding var showAddGradeView: Bool
     
+    @EnvironmentObject var gradeItemManager: GradeItemManager
+    
     var gradeOptions = [1,2,3,4,5,6]
     
     var body: some View {
@@ -43,7 +45,7 @@ struct AddGradeItemView: View {
                 showAddGradeView = false
             },
             trailing: Button("Sichern") {
-                GradeItemManager.shared.addGradeItem(fromDummy: gradeItemDummy)
+                gradeItemManager.addGradeItem(fromDummy: gradeItemDummy)
                 showAddGradeView = false
             }
         )
@@ -54,11 +56,13 @@ struct AddGradeItemView: View {
 struct EditGradeItemView : View {
     @ObservedObject var gradeItem: GradeItem
     
+    @EnvironmentObject var gradeItemManager: GradeItemManager
+    
     var body: some View {
         GradeItemView(subject: $gradeItem.subject.toNonOptionalString(), timeStamp: $gradeItem.timeStamp.toNonOptionalDate(), value: $gradeItem.value)
         .navigationTitle("Note bearbeiten")
         .onDisappear {
-            PersistenceController.shared.saveContext()
+            gradeItemManager.saveContext()
         }
     }
 }
@@ -81,8 +85,9 @@ struct GradeItemView: View {
 }
 }
 
-//struct AddGradeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddGradeItemView(showAddGradeView: .constant(false))
-//    }
-//}
+struct AddGradeView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddGradeItemView(showAddGradeView: .constant(false))
+            .environmentObject(GradeItemManager(usePreview: true))
+    }
+}

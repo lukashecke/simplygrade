@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
-//import CoreData
 
 struct ContentView: View {
+    var gradeItemManager = GradeItemManager()
+    
     var body: some View {
         TabView {
             GradesListNavigationView()
+                .environmentObject(gradeItemManager)
                 .tabItem {
                     Text("Noten")
                     Image(systemName: "doc.plaintext") // TODO: was passendes suchen
@@ -27,7 +29,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-            ContentView()
+            ContentView(gradeItemManager: GradeItemManager(usePreview: true))
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

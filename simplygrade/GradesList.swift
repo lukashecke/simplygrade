@@ -27,6 +27,8 @@ struct GradesList: View {
     
     @Environment(\.editMode) var editMode
     
+    @EnvironmentObject var gradeItemManager: GradeItemManager
+    
     var body: some View {
         List {
             ForEach(gradeItems) { gradeItem in
@@ -35,7 +37,7 @@ struct GradesList: View {
             .onDelete(perform: { indexSet in
                 for index in indexSet {
                     let gradeItemToDelete = gradeItems[index]
-                    GradeItemManager.shared.delete(gradeItem: gradeItemToDelete)
+                    gradeItemManager.delete(gradeItem: gradeItemToDelete)
                 }
             })
             Text("Insgesamt \(gradeItems.count) Noten")
@@ -58,6 +60,7 @@ struct GradesList: View {
         )
         .sheet(isPresented: $showAddGradeView, content: {
             AddGradeItemView(showAddGradeView: $showAddGradeView)
+                .environmentObject(gradeItemManager) // Zwingend: Bei Sheetaufruf über Sheetmodifier kann in den erstellten Views nicht auf die hier vorhandenen EnvironmentObjects zugegriffen werden, diese müssen übergeben werden
         })
     }
 }
@@ -99,7 +102,8 @@ struct GradesList_Previews: PreviewProvider {
         Group {
         GradesList(showAddGradeView:
             .constant(false))
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environment(\.managedObjectContext, PersistenceController.preview.managedObjectContext)
+            .environmentObject(GradeItemManager(usePreview: true))
             GradeCell(gradeItem: PersistenceController.testGraddeItem)
                 .previewLayout(.sizeThatFits)
         }
