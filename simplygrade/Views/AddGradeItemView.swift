@@ -12,6 +12,7 @@ struct GradeItemDummy {
     var subject = "Fach"
     var timeStamp = Date()
     var value = Int16(0)
+    var schoolYear = SchoolYear()
 }
 
 struct AddGradeItemView: View {
@@ -30,7 +31,7 @@ struct AddGradeItemView: View {
     
     var body: some View {
         NavigationView {
-            GradeItemView(subject: $gradeItemDummy.subject, timeStamp: $gradeItemDummy.timeStamp, value: $gradeItemDummy.value)
+            GradeItemView(subject: $gradeItemDummy.subject, timeStamp: $gradeItemDummy.timeStamp, value: $gradeItemDummy.value, schoolYear: $gradeItemDummy.schoolYear)
 //                Picker("Note", selection: $gradeItemDummy.value) {
 //                                                ForEach(0..<gradeOptions.count) {
 //                                                    Text(String(self.gradeOptions[$0]))
@@ -59,7 +60,7 @@ struct EditGradeItemView : View {
     @EnvironmentObject var gradeItemManager: GradeItemManager
     
     var body: some View {
-        GradeItemView(subject: $gradeItem.subject.toNonOptionalString(), timeStamp: $gradeItem.timeStamp.toNonOptionalDate(), value: $gradeItem.value)
+        GradeItemView(subject: $gradeItem.subject.toNonOptionalString(), timeStamp: $gradeItem.timeStamp.toNonOptionalDate(), value: $gradeItem.value, schoolYear: $gradeItem.schoolYear.toNonOptionalValue(fallback: SchoolYear()))
         .navigationTitle("Note bearbeiten")
         .onDisappear {
             gradeItemManager.saveContext()
@@ -72,6 +73,12 @@ struct GradeItemView: View {
     @Binding var subject: String
     @Binding var timeStamp: Date
     @Binding var value: Int16
+    @Binding var schoolYear: SchoolYear
+    
+    @FetchRequest(
+        entity: SchoolYear.entity(), sortDescriptors:[NSSortDescriptor(key: "name", ascending: false)]
+    )
+    private var schoolYears: FetchedResults<SchoolYear>
     
     var body: some View {
         Form {
@@ -81,6 +88,11 @@ struct GradeItemView: View {
             Stepper(value: $value, in: 1...6) {
                 Text("Note: \(value)")
             }
+            Picker(selection: $schoolYear, label: Text("Schuljahr"), content: {
+                ForEach(schoolYears, id: \.self) { (schoolYear: SchoolYear) in
+                    Text(schoolYear.name!) // TODO: ! weg
+                }
+            })
     }
 }
 }

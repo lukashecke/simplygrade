@@ -7,18 +7,24 @@
 
 import SwiftUI
 
+struct SchoolYearDummy {
+    var name = "Schuljahrname"
+}
+
 struct AddSchoolYearView: View {
-    @StateObject private var newSchoolYear = SchoolYear(context: PersistenceController.shared.managedObjectContext)
+    @State private var schoolYearDummy = SchoolYearDummy()
     
     @State private var didDisappearWithButton = false
     
     @Binding var showAddScholYearView: Bool
     
+    @EnvironmentObject var schoolYearsManager: SchoolYearsManager
+    
     var body: some View {
         NavigationView {
         Form {
             Section(header: Text("Name")) {
-                TextField("Placeholder", text: $newSchoolYear.name.toNonOptionalString())
+                TextField("Placeholder", text: $schoolYearDummy.name)
             }
             Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
                 TextEditor(text: .constant("Placeholder"))
@@ -44,9 +50,7 @@ struct AddSchoolYearView: View {
     private func hideAddSchoolYearView(shouldSaveNewSchoolYear: Bool) {
         didDisappearWithButton = true
         if shouldSaveNewSchoolYear {
-            PersistenceController.shared.saveContext()
-        } else {
-            SchoolYearsManager.shared.delete(schoolYear: newSchoolYear)
+            schoolYearsManager.addSchoolYear(fromDummy: schoolYearDummy)
         }
         showAddScholYearView = false
     }
@@ -55,5 +59,6 @@ struct AddSchoolYearView: View {
 struct AddSchoolYearView_Previews: PreviewProvider {
     static var previews: some View {
         AddSchoolYearView(showAddScholYearView: .constant(true))
+            .environmentObject(SchoolYearsManager(usePreview: true))
     }
 }

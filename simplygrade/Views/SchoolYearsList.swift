@@ -17,19 +17,19 @@ struct SchoolYearsListNavigationView: View {
 
 struct SchoolYearsList: View {
     @FetchRequest(
-        entity: SchoolYear.entity(),
-        sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)]
+        entity: SchoolYear.entity(), sortDescriptors:[NSSortDescriptor(key: "name", ascending: false)]
     )
     private var schoolYears: FetchedResults<SchoolYear>
     
     @State private var showAddSchoolYearView = false
     
+    @EnvironmentObject var schoolYearsManager: SchoolYearsManager
     var body: some View {
         List {
-            ForEach(schoolYears) { schoolYear in
-                Text(schoolYear.name ?? "")
+            ForEach(schoolYears, id: \.self) { (schoolYear: SchoolYear) in
+                Text(schoolYear.name!) // TODO: ! weg
             }
-        }
+        }.listStyle(PlainListStyle())
         .navigationBarItems(trailing: Button(action: {
             showAddSchoolYearView = true
         }){
@@ -37,7 +37,8 @@ struct SchoolYearsList: View {
         })
         .navigationTitle("Schuljahre")
         .sheet(isPresented: $showAddSchoolYearView) {
-            AddSchoolYearView(showAddScholYearView: $showAddSchoolYearView) 
+            AddSchoolYearView(showAddScholYearView: $showAddSchoolYearView)
+                .environmentObject(schoolYearsManager)
         }
     }
 }
