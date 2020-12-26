@@ -34,26 +34,33 @@ struct GradesList: View {
     @EnvironmentObject var gradeItemManager: GradeItemManager
     
     var body: some View {
-        
         List {
-            // TODO: Alle Forcings (!) verändern
             ForEach(schoolYears, id: \.self) { (schoolYear: SchoolYear) in
-                Section(header: Text(schoolYear.name!).font(.title)
+                Section(
+                    header:
+                            Text(schoolYear.name!).font(.title)/*,
+                        footer:
+                            Text("\((schoolYear.gradeItems?.count)!) Noten").foregroundColor(.secondary)*/
                 ) {
                     ForEach(gradeItems.filter{ (gradeItem: GradeItem) in
                         gradeItem.schoolYear == schoolYear
                     }, id: \.self) { gradeItem in
                         GradeNavigationCell(gradeItem: gradeItem)
-                            .listStyle(PlainListStyle())
+//                            .listStyle(PlainListStyle())
                     }
+//                    Text("\((schoolYear.gradeItems?.count)!) Noten")
                 }.foregroundColor(.primary)
             }
         }
-        .listStyle(DefaultListStyle())
-        //        .listStyle(GroupedListStyle())
+        .overlay(
+            Text(gradeItems.count == 0 ? "Trage oben deine erste Note ein." : "")
+            // TODO: Blinken? und Pfeil auf den Knopf it dem +?
+        )
+//        .listStyle(DefaultListStyle())
+                .listStyle(GroupedListStyle())
         //        .listStyle(InsetGroupedListStyle())
         //        .listStyle(InsetListStyle())
-                .listStyle(PlainListStyle())
+//                .listStyle(PlainListStyle())
         //        .listStyle(SidebarListStyle())
         
         .navigationTitle("Meine Noten")

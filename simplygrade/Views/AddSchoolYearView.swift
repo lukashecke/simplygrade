@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SchoolYearDummy {
-    var name = "Schuljahrname"
+    var name = "" // vor-eingetragener Wert
 }
 
 struct AddSchoolYearView: View {
@@ -26,11 +26,12 @@ struct AddSchoolYearView: View {
             Section(header: Text("Name")) {
                 TextField("Placeholder", text: $schoolYearDummy.name)
             }
-            Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
-                TextEditor(text: .constant("Placeholder"))
-                    .frame(height: 300)
-            }
+//            Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
+//                TextEditor(text: .constant("Placeholder"))
+//                    .frame(height: 300)
+//            }
         }
+        .navigationTitle("Neus Schuljahr")
         .navigationBarItems(
             leading: Button("Abbrechen") {
                 hideAddSchoolYearView(shouldSaveNewSchoolYear: false)

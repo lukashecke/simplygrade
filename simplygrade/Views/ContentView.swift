@@ -11,23 +11,36 @@ struct ContentView: View {
     var gradeItemManager = GradeItemManager()
     var schoolYearsManager = SchoolYearsManager()
     
+    @State private var showAddSchoolYearView = false
+    
     var body: some View {
-        TabView {
-            GradesListNavigationView()
-                .environmentObject(gradeItemManager)
-                .tabItem {
-                    Text("Noten")
-                    Image(systemName: "doc.plaintext") // TODO: was passendes suchen
-                } // .listStyle(InsetGroupedListStyle())
-            SchoolYearsListNavigationView()
-                .environmentObject(schoolYearsManager)
-                .tabItem {
-                    Text("Schuljahre")
-                    Image(systemName: "calendar") // TODO: was passendes suchen
-                }
-        }
+        //        VStack {
+        GradesListNavigationView()
+            .environmentObject(gradeItemManager)
+            .overlay(
+                VStack{
+                    Spacer()
+                        Button(action: {
+                            showAddSchoolYearView = true
+                        }){
+                            Text("Neues Schuljahr")
+                        }
+                        
+                        .sheet(isPresented: $showAddSchoolYearView) {
+                            AddSchoolYearView(showAddScholYearView: $showAddSchoolYearView)
+                                .environmentObject(schoolYearsManager)
+                                
+//                                .navigationBarTitle(Text("Neues Schuljahr"))
+                        }
+                    }
+            )
+        //        }
+        //        .onAppear() {
+        //            UITabBar.appearance().unselectedItemTintColor  = .none
+        //        }
+        
     }
-}
+    }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
