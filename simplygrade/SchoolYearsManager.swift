@@ -7,13 +7,10 @@
 
 import Foundation
 
-class SchoolYearsManager {
-    static let shared = SchoolYearsManager()
-    
-    private init() {}
+class SchoolYearsManager: PersistenceManager {
     
     func delete(schoolYear: SchoolYear) {
-        PersistenceController.shared.managedObjectContext.delete(schoolYear)
-        PersistenceController.shared.saveContext()
+        managedObjectContext.delete(schoolYear)
+        saveContext()
     }
 }

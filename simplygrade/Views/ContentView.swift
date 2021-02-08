@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var gradeItemManager = GradeItemManager()
     
+    var schoolYearsManager = SchoolYearsManager()
+    
     var body: some View {
         TabView {
             GradesListNavigationView()
@@ -19,6 +21,7 @@ struct ContentView: View {
                     Image(systemName: "doc.plaintext") // TODO: was passendes suchen
                 } // .listStyle(InsetGroupedListStyle())
             SchoolYearsListNavigationView()
+                .environmentObject(schoolYearsManager)
                 .tabItem {
                     Text("Schuljahre")
                     Image(systemName: "calendar") // TODO: was passendes suchen
@@ -29,7 +32,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-            ContentView(gradeItemManager: GradeItemManager(usePreview: true))
+            ContentView(
+                gradeItemManager: GradeItemManager(usePreview: true),
+                schoolYearsManager: SchoolYearsManager(usePreview: true)
+            )
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

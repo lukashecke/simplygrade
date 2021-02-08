@@ -24,6 +24,8 @@ struct SchoolYearsList: View {
     
     @State private var showAddSchoolYearView = false
     
+    @EnvironmentObject var schoolYearsManager: SchoolYearsManager
+    
     var body: some View {
         List {
             ForEach(schoolYears) { schoolYear in
@@ -37,13 +39,15 @@ struct SchoolYearsList: View {
         })
         .navigationTitle("Schuljahre")
         .sheet(isPresented: $showAddSchoolYearView) {
-            AddSchoolYearView(showAddScholYearView: $showAddSchoolYearView) 
+            AddSchoolYearView(showAddSchoolYearView: $showAddSchoolYearView, schoolYearsManager: schoolYearsManager) 
         }
     }
 }
 
 struct SchoolYearsList_Previews: PreviewProvider {
     static var previews: some View {
-        SchoolYearsList()
+        SchoolYearsListNavigationView()
+            .environment(\.managedObjectContext, PersistenceController.preview.managedObjectContext)
+            .environmentObject(SchoolYearsManager(usePreview: true))
     }
 }

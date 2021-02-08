@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct AddSchoolYearView: View {
-    @StateObject private var newSchoolYear = SchoolYear(context: PersistenceController.shared.managedObjectContext)
+    private var newSchoolYear: StateObject<SchoolYear>
     
     @State private var didDisappearWithButton = false
     
-    @Binding var showAddScholYearView: Bool
+    var showAddSchoolYearView: Binding<Bool>
+    
+    let schoolYearsManager: SchoolYearsManager
+    
+    init(showAddSchoolYearView: Binding<Bool>, schoolYearsManager: SchoolYearsManager) {
+        self.showAddSchoolYearView = showAddSchoolYearView
+        self.schoolYearsManager = schoolYearsManager
+        newSchoolYear = StateObject<SchoolYear>(wrappedValue: SchoolYear(context: schoolYearsManager.managedObjectContext))
+    }
     
     var body: some View {
         NavigationView {
         Form {
             Section(header: Text("Name")) {
-                TextField("Placeholder", text: $newSchoolYear.name.toNonOptionalString())
+                TextField("Placeholder", text: newSchoolYear.projectedValue.name.toNonOptionalString())
             }
             Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
                 TextEditor(text: .constant("Placeholder"))
@@ -44,16 +52,16 @@ struct AddSchoolYearView: View {
     private func hideAddSchoolYearView(shouldSaveNewSchoolYear: Bool) {
         didDisappearWithButton = true
         if shouldSaveNewSchoolYear {
-            PersistenceController.shared.saveContext()
+            schoolYearsManager.saveContext()
         } else {
-            SchoolYearsManager.shared.delete(schoolYear: newSchoolYear)
+            schoolYearsManager.delete(schoolYear: newSchoolYear.wrappedValue)
         }
-        showAddScholYearView = false
+        showAddSchoolYearView.wrappedValue = false
     }
 }
 
 struct AddSchoolYearView_Previews: PreviewProvider {
     static var previews: some View {
-        AddSchoolYearView(showAddScholYearView: .constant(true))
+        AddSchoolYearView(showAddSchoolYearView: .constant(true), schoolYearsManager: SchoolYearsManager(usePreview: true))
     }
 }

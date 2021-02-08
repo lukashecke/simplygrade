@@ -34,6 +34,8 @@ struct PersistenceController {
         for _ in 0..<10 {
             let newItem = GradeItem(context: viewContext)
             newItem.subject = "TestSubject"
+            let newSchoolYeaar = SchoolYear(context: viewContext)
+            newSchoolYeaar.name = "TestSubject"
         }
         do {
             try viewContext.save()
