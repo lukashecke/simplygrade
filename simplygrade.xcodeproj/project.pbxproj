@@ -31,7 +31,7 @@
 		33036EE82538B7C600AB5ABA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		33036EEA2538B7C600AB5ABA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		33036EED2538B7C600AB5ABA /* simplygrade.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = simplygrade.xcdatamodel; sourceTree = "<group>"; };
-		33036EEF2538B7C600AB5ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33036EEF2538B7C600AB5ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = simplygrade/Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGradeItemView.swift; sourceTree = "<group>"; };
 		33053391256ECAC5001721A3 /* GradeItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItemManager.swift; sourceTree = "<group>"; };
 		33053394256ED5C2001721A3 /* GradesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesList.swift; sourceTree = "<group>"; };
@@ -72,20 +72,11 @@
 		33036EE02538B7C600AB5ABA /* simplygrade */ = {
 			isa = PBXGroup;
 			children = (
+				33BBDFC525D1CB4D003DD141 /* Resources */,
+				33036EE12538B7C600AB5ABA /* simplygradeApp.swift */,
 				33555BD82538DB2C00640DBF /* Models */,
 				33555BD72538DB0D00640DBF /* Views */,
-				33036EE12538B7C600AB5ABA /* simplygradeApp.swift */,
-				33036EEA2538B7C600AB5ABA /* Persistence.swift */,
-				33036EE52538B7C600AB5ABA /* Assets.xcassets */,
-				33036EEF2538B7C600AB5ABA /* Info.plist */,
 				33036EE72538B7C600AB5ABA /* Preview Content */,
-				33053391256ECAC5001721A3 /* GradeItemManager.swift */,
-				33053394256ED5C2001721A3 /* GradesList.swift */,
-				33053397256ED781001721A3 /* SchoolYearsList.swift */,
-				3305339A256EDCF8001721A3 /* CustomEditButton.swift */,
-				3305339D256EE09D001721A3 /* AddSchoolYearView.swift */,
-				33CD2EC12570288900A414ED /* BindingExtension.swift */,
-				33FFD6542576A5D5005F673B /* SchoolYearsManager.swift */,
 			);
 			path = simplygrade;
 			sourceTree = "<group>";
@@ -101,8 +92,13 @@
 		33555BD72538DB0D00640DBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				33053394256ED5C2001721A3 /* GradesList.swift */,
 				33036EE32538B7C600AB5ABA /* ContentView.swift */,
 				33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */,
+				33053397256ED781001721A3 /* SchoolYearsList.swift */,
+				3305339D256EE09D001721A3 /* AddSchoolYearView.swift */,
+				33BBDFC425D1CAD5003DD141 /* Helper Views */,
+				33BBDFC125D1CA40003DD141 /* Extensions */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,9 +106,37 @@
 		33555BD82538DB2C00640DBF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */,
+				33036EEA2538B7C600AB5ABA /* Persistence.swift */,
+				33053391256ECAC5001721A3 /* GradeItemManager.swift */,
+				33FFD6542576A5D5005F673B /* SchoolYearsManager.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		33BBDFC125D1CA40003DD141 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				33CD2EC12570288900A414ED /* BindingExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		33BBDFC425D1CAD5003DD141 /* Helper Views */ = {
+			isa = PBXGroup;
+			children = (
+				3305339A256EDCF8001721A3 /* CustomEditButton.swift */,
+			);
+			path = "Helper Views";
+			sourceTree = "<group>";
+		};
+		33BBDFC525D1CB4D003DD141 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				33036EE52538B7C600AB5ABA /* Assets.xcassets */,
+				33036EEF2538B7C600AB5ABA /* Info.plist */,
+				33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +277,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = simplygrade/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -308,6 +333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = simplygrade/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -327,7 +353,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"simplygrade/Preview Content\"";
 				DEVELOPMENT_TEAM = H33FK7Z68T;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = simplygrade/Info.plist;
+				INFOPLIST_FILE = simplygrade/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -349,7 +375,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"simplygrade/Preview Content\"";
 				DEVELOPMENT_TEAM = H33FK7Z68T;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = simplygrade/Info.plist;
+				INFOPLIST_FILE = simplygrade/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
