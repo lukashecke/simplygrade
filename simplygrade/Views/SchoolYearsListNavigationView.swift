@@ -1,5 +1,5 @@
 //
-//  SchoolYearsList.swift
+//  SchoolYearsListNavigationView.swift
 //  simplygrade
 //
 //  Created by Lukas Hecke on 25.11.20.
@@ -44,7 +44,7 @@ struct SchoolYearsList: View {
     }
 }
 
-struct SchoolYearsList_Previews: PreviewProvider {
+struct SchoolYearsListNavigationView_Previews: PreviewProvider {
     static var previews: some View {
         SchoolYearsListNavigationView()
             .environment(\.managedObjectContext, PersistenceController.preview.managedObjectContext)

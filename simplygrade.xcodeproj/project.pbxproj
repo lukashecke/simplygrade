@@ -13,10 +13,10 @@
 		33036EE92538B7C600AB5ABA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33036EE82538B7C600AB5ABA /* Preview Assets.xcassets */; };
 		33036EEB2538B7C600AB5ABA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EEA2538B7C600AB5ABA /* Persistence.swift */; };
 		33036EEE2538B7C600AB5ABA /* simplygrade.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33036EEC2538B7C600AB5ABA /* simplygrade.xcdatamodeld */; };
-		33036EF82538BFDD00AB5ABA /* AddGradeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */; };
+		33036EF82538BFDD00AB5ABA /* GradeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33036EF72538BFDD00AB5ABA /* GradeItemView.swift */; };
 		33053392256ECAC5001721A3 /* GradeItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33053391256ECAC5001721A3 /* GradeItemManager.swift */; };
-		33053395256ED5C2001721A3 /* GradesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33053394256ED5C2001721A3 /* GradesList.swift */; };
-		33053398256ED781001721A3 /* SchoolYearsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33053397256ED781001721A3 /* SchoolYearsList.swift */; };
+		33053395256ED5C2001721A3 /* GradeItemsListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33053394256ED5C2001721A3 /* GradeItemsListNavigationView.swift */; };
+		33053398256ED781001721A3 /* SchoolYearsListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33053397256ED781001721A3 /* SchoolYearsListNavigationView.swift */; };
 		3305339B256EDCF8001721A3 /* CustomEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305339A256EDCF8001721A3 /* CustomEditButton.swift */; };
 		3305339E256EE09D001721A3 /* AddSchoolYearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305339D256EE09D001721A3 /* AddSchoolYearView.swift */; };
 		33CD2EC22570288900A414ED /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD2EC12570288900A414ED /* BindingExtension.swift */; };
@@ -32,10 +32,10 @@
 		33036EEA2538B7C600AB5ABA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		33036EED2538B7C600AB5ABA /* simplygrade.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = simplygrade.xcdatamodel; sourceTree = "<group>"; };
 		33036EEF2538B7C600AB5ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = simplygrade/Resources/Info.plist; sourceTree = SOURCE_ROOT; };
-		33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGradeItemView.swift; sourceTree = "<group>"; };
+		33036EF72538BFDD00AB5ABA /* GradeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItemView.swift; sourceTree = "<group>"; };
 		33053391256ECAC5001721A3 /* GradeItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItemManager.swift; sourceTree = "<group>"; };
-		33053394256ED5C2001721A3 /* GradesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesList.swift; sourceTree = "<group>"; };
-		33053397256ED781001721A3 /* SchoolYearsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolYearsList.swift; sourceTree = "<group>"; };
+		33053394256ED5C2001721A3 /* GradeItemsListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItemsListNavigationView.swift; sourceTree = "<group>"; };
+		33053397256ED781001721A3 /* SchoolYearsListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolYearsListNavigationView.swift; sourceTree = "<group>"; };
 		3305339A256EDCF8001721A3 /* CustomEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditButton.swift; sourceTree = "<group>"; };
 		3305339D256EE09D001721A3 /* AddSchoolYearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSchoolYearView.swift; sourceTree = "<group>"; };
 		33CD2EC12570288900A414ED /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
@@ -72,10 +72,10 @@
 		33036EE02538B7C600AB5ABA /* simplygrade */ = {
 			isa = PBXGroup;
 			children = (
-				33BBDFC525D1CB4D003DD141 /* Resources */,
 				33036EE12538B7C600AB5ABA /* simplygradeApp.swift */,
 				33555BD82538DB2C00640DBF /* Models */,
 				33555BD72538DB0D00640DBF /* Views */,
+				33BBDFC525D1CB4D003DD141 /* Resources */,
 				33036EE72538B7C600AB5ABA /* Preview Content */,
 			);
 			path = simplygrade;
@@ -92,10 +92,10 @@
 		33555BD72538DB0D00640DBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				33053394256ED5C2001721A3 /* GradesList.swift */,
 				33036EE32538B7C600AB5ABA /* ContentView.swift */,
-				33036EF72538BFDD00AB5ABA /* AddGradeItemView.swift */,
-				33053397256ED781001721A3 /* SchoolYearsList.swift */,
+				33053394256ED5C2001721A3 /* GradeItemsListNavigationView.swift */,
+				33036EF72538BFDD00AB5ABA /* GradeItemView.swift */,
+				33053397256ED781001721A3 /* SchoolYearsListNavigationView.swift */,
 				3305339D256EE09D001721A3 /* AddSchoolYearView.swift */,
 				33BBDFC425D1CAD5003DD141 /* Helper Views */,
 				33BBDFC125D1CA40003DD141 /* Extensions */,
@@ -208,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33053398256ED781001721A3 /* SchoolYearsList.swift in Sources */,
+				33053398256ED781001721A3 /* SchoolYearsListNavigationView.swift in Sources */,
 				3305339B256EDCF8001721A3 /* CustomEditButton.swift in Sources */,
 				33FFD6552576A5D5005F673B /* SchoolYearsManager.swift in Sources */,
 				33053392256ECAC5001721A3 /* GradeItemManager.swift in Sources */,
@@ -218,8 +218,8 @@
 				33036EE42538B7C600AB5ABA /* ContentView.swift in Sources */,
 				33036EE22538B7C600AB5ABA /* simplygradeApp.swift in Sources */,
 				3305339E256EE09D001721A3 /* AddSchoolYearView.swift in Sources */,
-				33053395256ED5C2001721A3 /* GradesList.swift in Sources */,
-				33036EF82538BFDD00AB5ABA /* AddGradeItemView.swift in Sources */,
+				33053395256ED5C2001721A3 /* GradeItemsListNavigationView.swift in Sources */,
+				33036EF82538BFDD00AB5ABA /* GradeItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

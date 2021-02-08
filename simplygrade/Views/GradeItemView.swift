@@ -1,11 +1,40 @@
 //
-//  AddGradeView.swift
+//  GradeItemView.swift
 //  simplygrade
 //
 //  Created by Lukas Hecke on 15.10.20.
 //
 
 import SwiftUI
+
+struct GradeItemView: View {
+    @Binding var subject: String
+    @Binding var timeStamp: Date
+    @Binding var value: Double
+    @Binding var comments: String
+    
+//    private let stringFormatter: Formatter = {
+//        let numberFormatter = Formatter()
+//        return numberFormatter
+//    }()
+    
+    var body: some View {
+        Form {
+            Section{
+            TextField("Fach", text: $subject)
+            DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
+                .environment(\.locale, Locale.init(identifier: "de"))
+            Stepper(value: $value, in: 1...6) {
+                Text("Note: \(value)")
+            }
+            }
+            Section {
+                TextField("Anmerkungen", text: $comments)
+            }
+    }
+}
+}
+
 
 // Quasi Default der beim Cancel automatisch verworfen wird
 struct GradeItemDummy {
@@ -78,35 +107,7 @@ struct EditGradeItemView : View {
 }
 
 
-struct GradeItemView: View {
-    @Binding var subject: String
-    @Binding var timeStamp: Date
-    @Binding var value: Double
-    @Binding var comments: String
-    
-//    private let stringFormatter: Formatter = {
-//        let numberFormatter = Formatter()
-//        return numberFormatter
-//    }()
-    
-    var body: some View {
-        Form {
-            Section{
-            TextField("Fach", text: $subject)
-            DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
-                .environment(\.locale, Locale.init(identifier: "de"))
-            Stepper(value: $value, in: 1...6) {
-                Text("Note: \(value)")
-            }
-            }
-            Section {
-                TextField("Anmerkungen", text: $comments)
-            }
-    }
-}
-}
-
-struct AddGradeView_Previews: PreviewProvider {
+struct GradeItemView_Previews: PreviewProvider {
     static var previews: some View {
         AddGradeItemView(showAddGradeView: .constant(false))
             .environmentObject(GradeItemManager(usePreview: true))

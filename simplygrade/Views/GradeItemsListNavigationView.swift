@@ -1,5 +1,5 @@
 //
-//  GradesList.swift
+//  GradeItemsListNavigationView.swift
 //  simplygrade
 //
 //  Created by Lukas Hecke on 25.11.20.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GradesListNavigationView: View {
+struct GradeItemsListNavigationView: View {
     @State private var showAddGradeView = false
     
     var body: some View {
@@ -97,11 +97,10 @@ struct GradeCell: View {
     }
 }
 
-struct GradesList_Previews: PreviewProvider {
+struct GradeItemsListNavigationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-        GradesList(showAddGradeView:
-            .constant(false))
+            GradeItemsListNavigationView()
             .environment(\.managedObjectContext, PersistenceController.preview.managedObjectContext)
             .environmentObject(GradeItemManager(usePreview: true))
             GradeCell(gradeItem: PersistenceController.testGraddeItem)
