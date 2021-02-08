@@ -33,37 +33,38 @@ struct GradesList: View {
     
     @EnvironmentObject var gradeItemManager: GradeItemManager
     
+    @State private var selectedSchoolYear = "2020/ 21" // TODO: Korrigieren
+    
     var body: some View {
-        List {
-            ForEach(schoolYears, id: \.self) { (schoolYear: SchoolYear) in
-                Section(
-                    header:
-                            Text(schoolYear.name!).font(.title)/*,
-                        footer:
-                            Text("\((schoolYear.gradeItems?.count)!) Noten").foregroundColor(.secondary)*/
-                ) {
-                    ForEach(gradeItems.filter{ (gradeItem: GradeItem) in
-                        gradeItem.schoolYear == schoolYear
-                    }, id: \.self) { gradeItem in
-                        GradeNavigationCell(gradeItem: gradeItem)
-//                            .listStyle(PlainListStyle())
-                    }
-//                    Text("\((schoolYear.gradeItems?.count)!) Noten")
-                }.foregroundColor(.primary)
-            }
-        }
+        VStack {
+            Picker(selection: $selectedSchoolYear, label: Text("What is your favorite color?")) {
+                Text("2019/ 20").tag(0)
+                Text("2020/ 21").tag(1)
+                Text("2021/ 22").tag(2)
+            }.pickerStyle(SegmentedPickerStyle())
+            List {
+                ForEach(gradeItems.filter{ (gradeItem: GradeItem) in
+                    gradeItem.schoolYear?.name == selectedSchoolYear
+                }, id: \.self) { gradeItem in
+                    GradeNavigationCell(gradeItem: gradeItem)
+                    //                            .listStyle(PlainListStyle())
+                }
+                //                    Text("\((schoolYear.gradeItems?.count)!) Noten")
+            }.foregroundColor(.primary)
+            
+        
         .overlay(
-            Text(gradeItems.count == 0 ? "Trage oben deine erste Note ein." : "")
+            Text(gradeItems.count == 0 ? "1. Erstelle dein erstes Schuljahr.\n 2.Erstelle das dazugehörige Schulfach\n 3. Trage deine erste Note ein" : "")
             // TODO: Blinken? und Pfeil auf den Knopf it dem +?
         )
-//        .listStyle(DefaultListStyle())
-                .listStyle(GroupedListStyle())
+        //        .listStyle(DefaultListStyle())
+        .listStyle(GroupedListStyle())
         //        .listStyle(InsetGroupedListStyle())
         //        .listStyle(InsetListStyle())
-//                .listStyle(PlainListStyle())
+        //                .listStyle(PlainListStyle())
         //        .listStyle(SidebarListStyle())
         
-        .navigationTitle("Meine Noten")
+        .navigationTitle("Übersicht") // TODO: Oder lieber Meine Noten?
         .navigationBarItems(
             leading:
                 CustomEditButton()
@@ -80,8 +81,9 @@ struct GradesList: View {
             AddGradeItemView(showAddGradeView: $showAddGradeView)
                 .environmentObject(gradeItemManager) // Zwingend: Bei Sheetaufruf über Sheetmodifier kann in den erstellten Views nicht auf die hier vorhandenen EnvironmentObjects zugegriffen werden, diese müssen übergeben werden
         })
-    }
+        }}
 }
+
 
 struct GradesList_Previews: PreviewProvider {
     static var previews: some View {

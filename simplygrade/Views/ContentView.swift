@@ -15,25 +15,62 @@ struct ContentView: View {
     
     var body: some View {
         //        VStack {
-        GradesListNavigationView()
-            .environmentObject(gradeItemManager)
-            .overlay(
-                VStack{
-                    Spacer()
-                        Button(action: {
-                            showAddSchoolYearView = true
-                        }){
-                            Text("Neues Schuljahr")
-                        }
-                        
-                        .sheet(isPresented: $showAddSchoolYearView) {
-                            AddSchoolYearView(showAddScholYearView: $showAddSchoolYearView)
-                                .environmentObject(schoolYearsManager)
-                                
-//                                .navigationBarTitle(Text("Neues Schuljahr"))
-                        }
-                    }
-            )
+        TabView {
+            GradesListNavigationView()
+                        .environmentObject(gradeItemManager)
+                .tabItem {
+                    Text("Startseite")
+                    Image(systemName: "graduationcap")
+                }
+            
+            SubjectsListNavigationView()
+                .tabItem {
+                    Text("Fächer")
+                    Image(systemName: "list.bullet")
+                }
+            
+            SchoolYearsListNavigationView()
+                .environmentObject(schoolYearsManager)
+                .tabItem {
+                    Text("Schuljahre")
+                    Image(systemName: "calendar")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Text("Einstellungen")
+                    Image(systemName: "gearshape")
+                }
+        }
+        
+        
+        
+        
+        
+        
+        
+//            .overlay(
+//                VStack{
+//                    Spacer()
+//                        Button(action: {
+//                            showAddSchoolYearView = true
+//                        }){
+//                            Text("Neues Schuljahr")
+//                        }
+//
+//                        .sheet(isPresented: $showAddSchoolYearView) {
+//                            AddSchoolYearView(showAddScholYearView: $showAddSchoolYearView)
+//                                .environmentObject(schoolYearsManager)
+//
+////                                .navigationBarTitle(Text("Neues Schuljahr"))
+//                        }
+//                    }
+//            )
+        
+        
+        
+        
+        
         //        }
         //        .onAppear() {
         //            UITabBar.appearance().unselectedItemTintColor  = .none

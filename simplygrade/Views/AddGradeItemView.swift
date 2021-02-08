@@ -81,15 +81,17 @@ struct GradeItemView: View {
     )
     private var schoolYears: FetchedResults<SchoolYear>
     
+    // TODO: Datenbank und dann das weg
+    var subjects: [String] = ["AP","VS","IT"]
+    
+    
     var body: some View {
         Form {
-            Picker(selection: $schoolYear, label: Text("Fach"), content: {
+            Picker(selection: $subject, label: Text("Fach"), content: {
                 
                 // TODO: Schaut noch nicht aus wie es soll
-                List() {
-                    Text("AP")
-                    Text("VS")
-                    Text("IT")
+                List(subjects, id: \.self) { subject in
+                    Text(subject)
                 }
                 
                 
