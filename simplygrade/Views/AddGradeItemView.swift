@@ -11,7 +11,8 @@ import SwiftUI
 struct GradeItemDummy {
     var subject = "Fach"
     var timeStamp = Date()
-    var value = Int16(0)
+    var value: Double = 1
+    var comments = "Anmerkungen"
 }
 
 struct AddGradeItemView: View {
@@ -30,7 +31,12 @@ struct AddGradeItemView: View {
     
     var body: some View {
         NavigationView {
-            GradeItemView(subject: $gradeItemDummy.subject, timeStamp: $gradeItemDummy.timeStamp, value: $gradeItemDummy.value)
+            GradeItemView(
+                subject: $gradeItemDummy.subject,
+                timeStamp: $gradeItemDummy.timeStamp,
+                value: $gradeItemDummy.value,
+                comments: $gradeItemDummy.comments
+            )
 //                Picker("Note", selection: $gradeItemDummy.value) {
 //                                                ForEach(0..<gradeOptions.count) {
 //                                                    Text(String(self.gradeOptions[$0]))
@@ -59,7 +65,11 @@ struct EditGradeItemView : View {
     @EnvironmentObject var gradeItemManager: GradeItemManager
     
     var body: some View {
-        GradeItemView(subject: $gradeItem.subject.toNonOptionalString(), timeStamp: $gradeItem.timeStamp.toNonOptionalDate(), value: $gradeItem.value)
+        GradeItemView(
+            subject: $gradeItem.subject.toNonOptionalString(),
+            timeStamp: $gradeItem.timeStamp.toNonOptionalDate(),
+            value: $gradeItem.value,
+            comments: $gradeItem.comments.toNonOptionalString())
         .navigationTitle("Note bearbeiten")
         .onDisappear {
             gradeItemManager.saveContext()
@@ -71,15 +81,26 @@ struct EditGradeItemView : View {
 struct GradeItemView: View {
     @Binding var subject: String
     @Binding var timeStamp: Date
-    @Binding var value: Int16
+    @Binding var value: Double
+    @Binding var comments: String
+    
+//    private let stringFormatter: Formatter = {
+//        let numberFormatter = Formatter()
+//        return numberFormatter
+//    }()
     
     var body: some View {
         Form {
+            Section{
             TextField("Fach", text: $subject)
             DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
                 .environment(\.locale, Locale.init(identifier: "de"))
             Stepper(value: $value, in: 1...6) {
                 Text("Note: \(value)")
+            }
+            }
+            Section {
+                TextField("Anmerkungen", text: $comments)
             }
     }
 }

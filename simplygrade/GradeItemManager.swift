@@ -10,15 +10,15 @@ import Foundation
 class GradeItemManager : PersistenceManager {
     
     func addGradeItem(fromDummy dummy: GradeItemDummy) {
-        addGradeItem(withSubject: dummy.subject, timeStamp: dummy.timeStamp, value: dummy.value)
+        addGradeItem(withSubject: dummy.subject, timeStamp: dummy.timeStamp, value: dummy.value, comments: dummy.comments)
     }
     
-    func addGradeItem(withSubject subject: String, timeStamp : Date, value: Int16) {
+    func addGradeItem(withSubject subject: String, timeStamp : Date, value: Double, comments: String) {
         let gradeItem = GradeItem(context: managedObjectContext)
         gradeItem.subject = subject
         gradeItem.timeStamp = timeStamp
-        gradeItem.value = Int16(value)
-        gradeItem.timeStamp = timeStamp
+        gradeItem.value = value
+        gradeItem.comments = comments
         // TODO: Value Setzen und DateTime führt noch zu Exception
         saveContext()
     }
