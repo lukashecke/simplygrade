@@ -52,12 +52,7 @@ struct GradesList: View {
                     .disabled(gradeItems.isEmpty)
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    showAddGradeView = true
-                }){
-                    Image(systemName: "plus").imageScale(.large)
-                }
-                .disabled(editMode?.wrappedValue.isEditing ?? false) // TODO: geht noch nicht?
+                AddGradeItemButton(showAddGradeView: $showAddGradeView)
             }
         }
         .sheet(isPresented: $showAddGradeView, content: {

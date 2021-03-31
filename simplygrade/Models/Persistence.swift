@@ -83,8 +83,4 @@ struct PersistenceController {
             }
         })
     }
-    
-    func saveContext() {
-        try? managedObjectContext.save()
-    }
 }

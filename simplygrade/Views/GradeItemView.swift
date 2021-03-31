@@ -106,6 +106,20 @@ struct EditGradeItemView : View {
     }
 }
 
+struct AddGradeItemButton: View {
+    @Binding var showAddGradeView: Bool
+    
+    @Environment(\.editMode) var editMode
+    
+    var body: some View {
+        Button(action: {
+            showAddGradeView = true
+        }){
+            Image(systemName: "plus").imageScale(.large)
+        }
+        .disabled(editMode?.wrappedValue.isEditing ?? false)
+    }
+}
 
 struct GradeItemView_Previews: PreviewProvider {
     static var previews: some View {
