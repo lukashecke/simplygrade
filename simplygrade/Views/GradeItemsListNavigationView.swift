@@ -10,9 +10,11 @@ import SwiftUI
 struct GradeItemsListNavigationView: View {
     @State private var showAddGradeView = false
     
+    @Binding var currentSchoolYear: SchoolYear?
+    
     var body: some View {
     NavigationView {
-        GradesList(showAddGradeView: $showAddGradeView)
+        GradesList(showAddGradeView: $showAddGradeView, selectedSchoolYear: $currentSchoolYear)
     }
     }
 }
@@ -25,13 +27,17 @@ struct GradesList: View {
     
     @Binding var showAddGradeView: Bool
     
+    @Binding var selectedSchoolYear: SchoolYear?
+    
     @Environment(\.editMode) var editMode
     
     @EnvironmentObject var gradeItemManager: GradeItemManager
     
     var body: some View {
+        let currentGradeItems = gradeItems.filter {$0.schoolYear?.name == selectedSchoolYear?.name}
+        
         List {
-            ForEach(gradeItems) { gradeItem in
+            ForEach(currentGradeItems) { gradeItem in
                 GradeNavigationCell(gradeItem: gradeItem)
             }
             .onDelete(perform: { indexSet in
@@ -40,12 +46,12 @@ struct GradesList: View {
                     gradeItemManager.delete(gradeItem: gradeItemToDelete)
                 }
             })
-            Text("Insgesamt \(gradeItems.count) Noten")
+            Text("Insgesamt \(currentGradeItems.count) Noten")
         }
         // TODO: Überlegen, ob PlainListStyle
 //        .listStyle(PlainListStyle())
         
-        .navigationTitle("Meine Noten")
+        .navigationTitle(selectedSchoolYear?.name ?? "Schuljahr auswählen!") // TODO: Defaultmäßig soll aktuellstes Schuljahr!!
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 CustomEditButton()
@@ -94,14 +100,14 @@ struct GradeCell: View {
     }
 }
 
-struct GradeItemsListNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            GradeItemsListNavigationView()
-            .environment(\.managedObjectContext, PersistenceController.preview.managedObjectContext)
-            .environmentObject(GradeItemManager(usePreview: true))
-            GradeCell(gradeItem: PersistenceController.testGraddeItem)
-                .previewLayout(.sizeThatFits)
-        }
-    }
-}
+//struct GradeItemsListNavigationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            GradeItemsListNavigationView()
+//            .environment(\.managedObjectContext, PersistenceController.preview.managedObjectContext)
+//            .environmentObject(GradeItemManager(usePreview: true))
+//            GradeCell(gradeItem: PersistenceController.testGraddeItem)
+//                .previewLayout(.sizeThatFits)
+//        }
+//    }
+//}
