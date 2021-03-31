@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GradeItemView: View {
     @Binding var subject: String
+    @Binding var schoolYear: SchoolYear?
     @Binding var timeStamp: Date
     @Binding var value: Double
     @Binding var comments: String
@@ -22,6 +23,7 @@ struct GradeItemView: View {
         Form {
             Section{
             TextField("Fach", text: $subject)
+                SchoolYearPicker(schoolYear: $schoolYear)
             DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
                 .environment(\.locale, Locale.init(identifier: "de"))
             Stepper(value: $value, in: 1...6) {
@@ -46,7 +48,7 @@ struct SchoolYearPicker : View {
         Picker("Schuljahr", selection: $schoolYear) {
             ForEach(schoolYears) { schoolYear in
                 Text(schoolYear.name ?? "")
-                    .tag(schoolYear) // Anzeigename übergibt die Instanz ans Binding
+                    .tag(schoolYear as SchoolYear?) // Anzeigename übergibt die Instanz ans Binding und MUSS GENAU DER SELBE TYP SEIN WIE BINDING ALSO ZU OPTIONAL CASTEN
             }
         }
     }
@@ -55,6 +57,7 @@ struct SchoolYearPicker : View {
 // Quasi Default der beim Cancel automatisch verworfen wird
 struct GradeItemDummy {
     var subject = "Fach"
+    var schoolYear: SchoolYear? = nil
     var timeStamp = Date()
     var value: Double = 1
     var comments = "Anmerkungen"
@@ -78,6 +81,7 @@ struct AddGradeItemView: View {
         NavigationView {
             GradeItemView(
                 subject: $gradeItemDummy.subject,
+                schoolYear: $gradeItemDummy.schoolYear,
                 timeStamp: $gradeItemDummy.timeStamp,
                 value: $gradeItemDummy.value,
                 comments: $gradeItemDummy.comments
@@ -112,6 +116,7 @@ struct EditGradeItemView : View {
     var body: some View {
         GradeItemView(
             subject: $gradeItem.subject.toNonOptionalString(),
+            schoolYear: $gradeItem.schoolYear,
             timeStamp: $gradeItem.timeStamp.toNonOptionalDate(),
             value: $gradeItem.value,
             comments: $gradeItem.comments.toNonOptionalString())
