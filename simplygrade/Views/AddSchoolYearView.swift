@@ -7,6 +7,31 @@
 
 import SwiftUI
 
+struct SchoolYearView: View {
+    @ObservedObject var schoolYear: SchoolYear
+    
+    var body: some View {
+    Form {
+        Section(header: Text("Name")) {
+            TextField("Placeholder", text: $schoolYear.name.toNonOptionalString())
+        }
+        Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
+            TextEditor(text: .constant("Placeholder"))
+                .frame(height: 300)
+        }
+    }
+    }
+    
+}
+
+struct EditSchoolYearView: View {
+    @ObservedObject var schoolYear: SchoolYear
+    
+    var body: some View {
+        SchoolYearView(schoolYear: schoolYear)
+    }
+}
+
 struct AddSchoolYearView: View {
     private var newSchoolYear: StateObject<SchoolYear>
     
@@ -24,15 +49,7 @@ struct AddSchoolYearView: View {
     
     var body: some View {
         NavigationView {
-        Form {
-            Section(header: Text("Name")) {
-                TextField("Placeholder", text: newSchoolYear.projectedValue.name.toNonOptionalString())
-            }
-            Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
-                TextEditor(text: .constant("Placeholder"))
-                    .frame(height: 300)
-            }
-        }
+            SchoolYearView(schoolYear: newSchoolYear.wrappedValue)
         .navigationBarItems(
             leading: Button("Abbrechen") {
                 hideAddSchoolYearView(shouldSaveNewSchoolYear: false)

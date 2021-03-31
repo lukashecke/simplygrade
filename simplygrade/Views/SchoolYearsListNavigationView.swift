@@ -29,7 +29,7 @@ struct SchoolYearsList: View {
     var body: some View {
         List {
             ForEach(schoolYears) { schoolYear in
-                Text(schoolYear.name ?? "")
+                SchoolYearCell(schoolYear: schoolYear)
             }
         }
         .navigationBarItems(trailing: Button(action: {
@@ -41,6 +41,14 @@ struct SchoolYearsList: View {
         .sheet(isPresented: $showAddSchoolYearView) {
             AddSchoolYearView(showAddSchoolYearView: $showAddSchoolYearView, schoolYearsManager: schoolYearsManager) 
         }
+    }
+}
+
+struct SchoolYearCell: View {
+    @ObservedObject var schoolYear: SchoolYear
+    
+    var body: some View {
+        NavigationLink(schoolYear.name ?? "", destination: EditSchoolYearView(schoolYear: schoolYear))
     }
 }
 
