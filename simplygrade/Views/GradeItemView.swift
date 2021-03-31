@@ -105,15 +105,19 @@ struct AddGradeItemView: View {
             
 //            TextField("Note", text: $gradeItemDummy.value).keyboardType(.decimalPad)
         .navigationTitle("Neue Note")
-        .navigationBarItems(
-            leading: Button("Abbrechen") {
-                showAddGradeView = false
-            },
-            trailing: Button("Sichern") {
-                gradeItemManager.addGradeItem(fromDummy: gradeItemDummy)
-                showAddGradeView = false
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Abbrechen") {
+                        showAddGradeView = false
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Sichern") {
+                        gradeItemManager.addGradeItem(fromDummy: gradeItemDummy)
+                        showAddGradeView = false
+                    }
+                }
             }
-        )
         }
     }
 }

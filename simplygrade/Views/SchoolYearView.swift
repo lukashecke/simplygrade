@@ -1,5 +1,5 @@
 //
-//  AddSchoolYearView.swift
+//  SchoolYearView.swift
 //  simplygrade
 //
 //  Created by Lukas Hecke on 25.11.20.
@@ -29,13 +29,16 @@ struct EditSchoolYearView: View {
     
     @EnvironmentObject var schoolYearManager: SchoolYearsManager
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         SchoolYearView(schoolYear: schoolYear)
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Speichern") {
                         schoolYearManager.saveContext()
-                        schoolYear.objectWillChange.send() // UI informieren -> status hat sich geändert
+                        presentationMode.wrappedValue.dismiss()
+                        // schoolYear.objectWillChange.send() // UI informieren -> status hat sich geändert
                     }
                     .disabled(!schoolYear.hasChanges)
                 }
@@ -66,14 +69,18 @@ struct AddSchoolYearView: View {
     var body: some View {
         NavigationView {
             SchoolYearView(schoolYear: newSchoolYear.wrappedValue)
-        .navigationBarItems(
-            leading: Button("Abbrechen") {
-                hideAddSchoolYearView(shouldSaveNewSchoolYear: false)
-            },
-            trailing: Button("Sichern") {
-                hideAddSchoolYearView(shouldSaveNewSchoolYear: true)
-            }
-        )
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Abbrechen") {
+                            hideAddSchoolYearView(shouldSaveNewSchoolYear: false)
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Sichern") {
+                            hideAddSchoolYearView(shouldSaveNewSchoolYear: true)
+                        }
+                    }
+                }
     }
         .onDisappear {
             if !didDisappearWithButton {

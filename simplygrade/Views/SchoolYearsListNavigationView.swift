@@ -32,14 +32,18 @@ struct SchoolYearsList: View {
                 SchoolYearCell(schoolYear: schoolYear)
             }
         }
-        .navigationBarItems(trailing: Button(action: {
-            showAddSchoolYearView = true
-        }){
-            Image(systemName: "plus").imageScale(.large)
-        })
         .navigationTitle("Schuljahre")
         .sheet(isPresented: $showAddSchoolYearView) {
             AddSchoolYearView(showAddSchoolYearView: $showAddSchoolYearView, schoolYearsManager: schoolYearsManager) 
+        }
+        .toolbar {
+            ToolbarItem (placement: .navigationBarTrailing) {
+                Button(action: {
+                    showAddSchoolYearView = true
+                }){
+                    Image(systemName: "plus").imageScale(.large)
+                }
+            }
         }
     }
 }
