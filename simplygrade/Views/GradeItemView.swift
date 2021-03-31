@@ -21,20 +21,30 @@ struct GradeItemView: View {
     
     var body: some View {
         Form {
-            Section{
-            TextField("Fach", text: $subject)
-                SchoolYearPicker(schoolYear: $schoolYear)
-            DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
-                .environment(\.locale, Locale.init(identifier: "de"))
-            Stepper(value: $value, in: 1...6) {
-                Text("Note: \(value)")
+            Section (header: Text("Fach")){
+                TextField("Fach", text: $subject)
             }
+            Section(header: Text("Schuljahr")) {
+                SchoolYearPicker(schoolYear: $schoolYear)
+                if schoolYear != nil {
+                Button("Schuljahr Verbindung aufheben") {
+                    schoolYear = nil
+                }
+                .foregroundColor(.red)
+                }
+            }
+            Section (header: Text("Sonstiges")) {
+                DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
+                    .environment(\.locale, Locale.init(identifier: "de"))
+                Stepper(value: $value, in: 1...6) {
+                Text("Note: \(value)")
+                }
             }
             Section {
                 TextField("Anmerkungen", text: $comments)
             }
+        }
     }
-}
 }
 
 struct SchoolYearPicker : View {
