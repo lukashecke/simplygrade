@@ -27,8 +27,24 @@ struct SchoolYearView: View {
 struct EditSchoolYearView: View {
     @ObservedObject var schoolYear: SchoolYear
     
+    @EnvironmentObject var schoolYearManager: SchoolYearsManager
+    
     var body: some View {
         SchoolYearView(schoolYear: schoolYear)
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Speichern") {
+                        schoolYearManager.saveContext()
+                        schoolYear.objectWillChange.send() // UI informieren -> status hat sich geändert
+                    }
+                    .disabled(!schoolYear.hasChanges)
+                }
+            }
+            .onDisappear {
+                if schoolYear.hasChanges {
+                    schoolYearManager.managedObjectContext.refresh(schoolYear, mergeChanges: false) // was ungespeichert, wird verworfen
+                }
+            }
     }
 }
 
