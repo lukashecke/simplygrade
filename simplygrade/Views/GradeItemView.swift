@@ -35,6 +35,22 @@ struct GradeItemView: View {
 }
 }
 
+struct SchoolYearPicker : View {
+    @FetchRequest(entity: SchoolYear.entity(),
+                  sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)]
+    ) private var schoolYears: FetchedResults<SchoolYear>
+    
+    @Binding var schoolYear: SchoolYear? // TODO: Hier eventuell nicht optional?!!
+    
+    var body: some View {
+        Picker("Schuljahr", selection: $schoolYear) {
+            ForEach(schoolYears) { schoolYear in
+                Text(schoolYear.name ?? "")
+                    .tag(schoolYear) // Anzeigename übergibt die Instanz ans Binding
+            }
+        }
+    }
+}
 
 // Quasi Default der beim Cancel automatisch verworfen wird
 struct GradeItemDummy {
