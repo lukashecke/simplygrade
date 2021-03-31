@@ -46,18 +46,20 @@ struct GradesList: View {
 //        .listStyle(PlainListStyle())
         
         .navigationTitle("Meine Noten")
-        .navigationBarItems(
-            leading:
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
                 CustomEditButton()
-                    .disabled(gradeItems.isEmpty),
-            trailing:
+                    .disabled(gradeItems.isEmpty)
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     showAddGradeView = true
                 }){
                     Image(systemName: "plus").imageScale(.large)
                 }
                 .disabled(editMode?.wrappedValue.isEditing ?? false) // TODO: geht noch nicht?
-        )
+            }
+        }
         .sheet(isPresented: $showAddGradeView, content: {
             AddGradeItemView(showAddGradeView: $showAddGradeView)
                 .environmentObject(gradeItemManager) // Zwingend: Bei Sheetaufruf über Sheetmodifier kann in den erstellten Views nicht auf die hier vorhandenen EnvironmentObjects zugegriffen werden, diese müssen übergeben werden
