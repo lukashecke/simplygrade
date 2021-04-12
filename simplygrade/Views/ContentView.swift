@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
     @State var currentSchoolYear: SchoolYear?
+    
+    @FetchRequest(
+        entity: SchoolYear.entity(),
+        sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)]
+    )
+    private var schoolYears: FetchedResults<SchoolYear>
     
     var gradeItemManager = GradeItemManager()
     
@@ -29,6 +36,9 @@ struct ContentView: View {
                     Image(systemName: "calendar") // TODO: was passendes suchen
                 }
             SchoolYearPicker(schoolYear: $currentSchoolYear)
+        }
+        .onAppear{
+            self.currentSchoolYear = schoolYears.last
         }
     }
 }

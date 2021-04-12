@@ -50,8 +50,7 @@ struct GradesList: View {
         }
         // TODO: Überlegen, ob PlainListStyle
 //        .listStyle(PlainListStyle())
-        
-        .navigationTitle(selectedSchoolYear?.name ?? "Schuljahr auswählen!") // TODO: Defaultmäßig soll aktuellstes Schuljahr!!
+        .navigationTitle(selectedSchoolYear?.name ?? "Noch kein Schuljahr erstellt") // TODO: Defaultmäßig soll aktuellstes Schuljahr!!
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 CustomEditButton()
