@@ -29,13 +29,12 @@ struct ContentView: View {
                     Text("Noten")
                     Image(systemName: "doc.plaintext") // TODO: was passendes suchen
                 } // .listStyle(InsetGroupedListStyle())
-            SchoolYearsListNavigationView()
+            SchoolYearsListNavigationView(currentSchoolYear: $currentSchoolYear)
                 .environmentObject(schoolYearsManager)
                 .tabItem {
                     Text("Schuljahre")
                     Image(systemName: "calendar") // TODO: was passendes suchen
                 }
-            SchoolYearPicker(schoolYear: $currentSchoolYear)
         }
         .onAppear{
             self.currentSchoolYear = schoolYears.last

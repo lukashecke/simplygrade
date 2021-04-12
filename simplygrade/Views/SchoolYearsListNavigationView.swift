@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SchoolYearsListNavigationView: View {
+    @Binding var currentSchoolYear: SchoolYear?
+    
     var body: some View {
         NavigationView {
-            SchoolYearsList()
+            SchoolYearsList(currentSchoolYear: $currentSchoolYear)
         }
     }
 }
@@ -26,10 +28,19 @@ struct SchoolYearsList: View {
     
     @EnvironmentObject var schoolYearsManager: SchoolYearsManager
     
+    @Binding var currentSchoolYear: SchoolYear?
+    
     var body: some View {
-        List {
-            ForEach(schoolYears) { schoolYear in
-                SchoolYearCell(schoolYear: schoolYear)
+        Form {
+            Section (header: Text("Schuljahre")){
+                List {
+                    ForEach(schoolYears) { schoolYear in
+                        SchoolYearCell(schoolYear: schoolYear)
+                    }
+                }
+            }
+            Section (header: Text("Anzeigen")){
+                SchoolYearPicker(schoolYear: $currentSchoolYear)
             }
         }
         .navigationTitle("Schuljahre")
@@ -56,10 +67,10 @@ struct SchoolYearCell: View {
     }
 }
 
-struct SchoolYearsListNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        SchoolYearsListNavigationView()
-            .environment(\.managedObjectContext, PersistenceController.preview.managedObjectContext)
-            .environmentObject(SchoolYearsManager(usePreview: true))
-    }
-}
+//struct SchoolYearsListNavigationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SchoolYearsListNavigationView(currentSchoolYear: )
+//            .environment(\.managedObjectContext, PersistenceController.preview.managedObjectContext)
+//            .environmentObject(SchoolYearsManager(usePreview: true))
+//    }
+//}
