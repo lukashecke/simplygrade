@@ -33,6 +33,7 @@ struct EditSchoolYearView: View {
     
     var body: some View {
         SchoolYearView(schoolYear: schoolYear)
+            .navigationTitle("Schuljahr bearbeiten")
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Speichern") {
@@ -69,6 +70,7 @@ struct AddSchoolYearView: View {
     var body: some View {
         NavigationView {
             SchoolYearView(schoolYear: newSchoolYear.wrappedValue)
+                .navigationTitle("Neus Schuljahr")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button("Abbrechen") {

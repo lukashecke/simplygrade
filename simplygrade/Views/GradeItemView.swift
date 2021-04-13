@@ -27,6 +27,7 @@ struct GradeItemView: View {
             Section(header: Text("Schuljahr")) {
                 SchoolYearPicker(schoolYear: $schoolYear)
                 if schoolYear != nil {
+                    // todo: weg damit
                 Button("Schuljahr Verbindung aufheben") {
                     schoolYear = nil
                 }
@@ -156,9 +157,9 @@ struct AddGradeItemButton: View {
     }
 }
 
-struct GradeItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddGradeItemView(showAddGradeView: .constant(false))
-            .environmentObject(GradeItemManager(usePreview: true))
-    }
-}
+//struct GradeItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddGradeItemView(showAddGradeView: .constant(false))
+//            .environmentObject(GradeItemManager(usePreview: true))
+//    }
+//}

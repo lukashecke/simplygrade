@@ -14,7 +14,7 @@ struct GradeItemsListNavigationView: View {
     
     var body: some View {
     NavigationView {
-        GradesList(showAddGradeView: $showAddGradeView, selectedSchoolYear: $currentSchoolYear)
+        GradesList(showAddGradeView: $showAddGradeView, currentSchoolYear: $currentSchoolYear)
     }
     }
 }
@@ -27,14 +27,14 @@ struct GradesList: View {
     
     @Binding var showAddGradeView: Bool
     
-    @Binding var selectedSchoolYear: SchoolYear?
+    @Binding var currentSchoolYear: SchoolYear?
     
     @Environment(\.editMode) var editMode
     
     @EnvironmentObject var gradeItemManager: GradeItemManager
     
     var body: some View {
-        let currentGradeItems = gradeItems.filter {$0.schoolYear?.name == selectedSchoolYear?.name}
+        let currentGradeItems = gradeItems.filter {$0.schoolYear?.name == currentSchoolYear?.name}
         
         List {
             ForEach(currentGradeItems) { gradeItem in
@@ -50,7 +50,7 @@ struct GradesList: View {
         }
         // TODO: Überlegen, ob PlainListStyle
 //        .listStyle(PlainListStyle())
-        .navigationTitle(selectedSchoolYear?.name ?? "Noch kein Schuljahr erstellt") // TODO: Defaultmäßig soll aktuellstes Schuljahr!!
+        .navigationTitle(currentSchoolYear?.name ?? "Noch kein Schuljahr erstellt") // TODO: Defaultmäßig soll aktuellstes Schuljahr!!
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 CustomEditButton()
