@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct GradeItemView: View {
-    @Binding var subject: String
-    @Binding var schoolYear: SchoolYear?
-    @Binding var timeStamp: Date
-    @Binding var value: Double
-    @Binding var comments: String
+    @ObservedObject var gradeItem: GradeItem
     
 //    private let stringFormatter: Formatter = {
 //        let numberFormatter = Formatter()
@@ -22,27 +18,27 @@ struct GradeItemView: View {
     var body: some View {
         Form {
             Section (header: Text("Fach")){
-                TextField("Fach", text: $subject)
+                TextField("Kürzel", text: $gradeItem.subject.toNonOptionalString())
             }
             Section(header: Text("Schuljahr")) {
-                SchoolYearPicker(schoolYear: $schoolYear)
-                if schoolYear != nil {
+                SchoolYearPicker(schoolYear: $gradeItem.schoolYear)
+                if gradeItem.schoolYear != nil {
                     // todo: weg damit
                 Button("Schuljahr Verbindung aufheben") {
-                    schoolYear = nil
+                    gradeItem.schoolYear = nil
                 }
                 .foregroundColor(.red)
                 }
             }
             Section (header: Text("Sonstiges")) {
-                DatePicker("Datum", selection: $timeStamp, displayedComponents: .date)
+                DatePicker("Datum", selection: $gradeItem.timeStamp.toNonOptionalDate(), displayedComponents: .date)
                     .environment(\.locale, Locale.init(identifier: "de"))
-                Stepper(value: $value, in: 1...6) {
-                Text("Note: \(value)")
+                Stepper(value: $gradeItem.value, in: 1...6) {
+                    Text("Note: \(gradeItem.value)")
                 }
             }
             Section {
-                TextField("Anmerkungen", text: $comments)
+                TextField("Anmerkungen", text: $gradeItem.comments.toNonOptionalString())
             }
         }
     }
@@ -67,38 +63,28 @@ struct SchoolYearPicker : View {
     }
 }
 
-// Quasi Default der beim Cancel automatisch verworfen wird
-struct GradeItemDummy {
-    var subject = "Fach"
-    var schoolYear: SchoolYear? = nil
-    var timeStamp = Date()
-    var value: Double = 1
-    var comments = "Anmerkungen"
-}
-
 struct AddGradeItemView: View {
 //    Perfekt für diesen Case, nur nicht für CoreData...
 //    @StateObject var gradeItem = GradeItem()
     
+    @State private var didDisappearWithButton = false
     
+    private var newGradeItem: StateObject<GradeItem>
+    var showAddGradeView: Binding<Bool>
     
-    @State private var gradeItemDummy = GradeItemDummy()
+    let gradeItemManager: GradeItemManager
     
-    @Binding var showAddGradeView: Bool
-    
-    @EnvironmentObject var gradeItemManager: GradeItemManager
+    init(showAddGradeView: Binding<Bool>, gradeItemManager: GradeItemManager) {
+        self.showAddGradeView = showAddGradeView
+        self.gradeItemManager = gradeItemManager
+        newGradeItem = StateObject<GradeItem>(wrappedValue: GradeItem(context: gradeItemManager.managedObjectContext))
+    }
     
     var gradeOptions = [1,2,3,4,5,6]
     
     var body: some View {
         NavigationView {
-            GradeItemView(
-                subject: $gradeItemDummy.subject,
-                schoolYear: $gradeItemDummy.schoolYear,
-                timeStamp: $gradeItemDummy.timeStamp,
-                value: $gradeItemDummy.value,
-                comments: $gradeItemDummy.comments
-            )
+            GradeItemView(gradeItem: newGradeItem.wrappedValue)
 //                Picker("Note", selection: $gradeItemDummy.value) {
 //                                                ForEach(0..<gradeOptions.count) {
 //                                                    Text(String(self.gradeOptions[$0]))
@@ -111,17 +97,28 @@ struct AddGradeItemView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Abbrechen") {
-                        showAddGradeView = false
+                        hideAddGradeView(shouldSaveNewGrade: false)
+//                        showAddGradeView = false
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Sichern") {
-                        gradeItemManager.addGradeItem(fromDummy: gradeItemDummy)
-                        showAddGradeView = false
+                        hideAddGradeView(shouldSaveNewGrade: true)
+//                        gradeItemManager.addGradeItem(withSubject: newGradeItem.wrappedValue.subject!, schoolYear: newGradeItem.wrappedValue.schoolYear, timeStamp: newGradeItem.wrappedValue.timeStamp!, value: newGradeItem.wrappedValue.value, comments: newGradeItem.wrappedValue.comments!)
+//                        showAddGradeView = false
                     }
                 }
             }
         }
+    }
+    private func hideAddGradeView(shouldSaveNewGrade: Bool) {
+        didDisappearWithButton = true
+        if shouldSaveNewGrade {
+            gradeItemManager.saveContext()
+        } else {
+            gradeItemManager.delete(gradeItem: newGradeItem.wrappedValue)
+        }
+        showAddGradeView.wrappedValue = false
     }
 }
 
@@ -131,12 +128,7 @@ struct EditGradeItemView : View {
     @EnvironmentObject var gradeItemManager: GradeItemManager
     
     var body: some View {
-        GradeItemView(
-            subject: $gradeItem.subject.toNonOptionalString(),
-            schoolYear: $gradeItem.schoolYear,
-            timeStamp: $gradeItem.timeStamp.toNonOptionalDate(),
-            value: $gradeItem.value,
-            comments: $gradeItem.comments.toNonOptionalString())
+        GradeItemView(gradeItem: gradeItem)
         .navigationTitle("Note bearbeiten")
         .onDisappear {
             gradeItemManager.saveContext()

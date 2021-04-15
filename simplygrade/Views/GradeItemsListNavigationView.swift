@@ -61,7 +61,7 @@ struct GradesList: View {
             }
         }
         .sheet(isPresented: $showAddGradeView, content: {
-            AddGradeItemView(showAddGradeView: $showAddGradeView)
+            AddGradeItemView(showAddGradeView: $showAddGradeView, gradeItemManager: gradeItemManager)
                 .environmentObject(gradeItemManager) // Zwingend: Bei Sheetaufruf über Sheetmodifier kann in den erstellten Views nicht auf die hier vorhandenen EnvironmentObjects zugegriffen werden, diese müssen übergeben werden
         })
     }
