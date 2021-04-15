@@ -60,8 +60,10 @@ struct SchoolYearPicker : View {
             ForEach(schoolYears) { schoolYear in
                 Text(schoolYear.name ?? "")
                     .tag(schoolYear as SchoolYear?) // Anzeigename übergibt die Instanz ans Binding und MUSS GENAU DER SELBE TYP SEIN WIE BINDING ALSO ZU OPTIONAL CASTEN
+                }
+//                .navigationBarTitle("Schuljahr")
             }
-        }
+//            .navigationBarTitle("Schuljahr auswählen")
     }
 }
 

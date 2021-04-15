@@ -13,12 +13,12 @@ struct SchoolYearView: View {
     var body: some View {
     Form {
         Section(header: Text("Name")) {
-            TextField("Placeholder", text: $schoolYear.name.toNonOptionalString())
+            TextField("z.B. Klasse, Jahr oder Semester", text: $schoolYear.name.toNonOptionalString())
         }
-        Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
-            TextEditor(text: .constant("Placeholder"))
-                .frame(height: 300)
-        }
+//        Section(header: Text("Notes - Nur für Lernzwecke (wieder weg)")) {
+//            TextEditor(text: .constant("Placeholder"))
+//                .frame(height: 300)
+//        }
     }
     }
     
@@ -70,7 +70,7 @@ struct AddSchoolYearView: View {
     var body: some View {
         NavigationView {
             SchoolYearView(schoolYear: newSchoolYear.wrappedValue)
-                .navigationTitle("Neus Schuljahr")
+                .navigationTitle("Neues Schuljahr")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button("Abbrechen") {
