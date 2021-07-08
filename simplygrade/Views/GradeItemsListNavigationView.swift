@@ -13,9 +13,9 @@ struct GradeItemsListNavigationView: View {
     @Binding var currentSchoolYear: SchoolYear?
     
     var body: some View {
-    NavigationView {
-        GradesList(showAddGradeView: $showAddGradeView, currentSchoolYear: $currentSchoolYear)
-    }
+        NavigationView {
+            GradesList(showAddGradeView: $showAddGradeView, currentSchoolYear: $currentSchoolYear)
+        }
     }
 }
 
@@ -25,6 +25,11 @@ struct GradesList: View {
     )
     private var gradeItems: FetchedResults<GradeItem>
     
+    @FetchRequest(
+        entity: SchoolYear.entity(), sortDescriptors:[NSSortDescriptor(key: "name", ascending: false)]
+    )
+    private var schoolYears: FetchedResults<SchoolYear>
+    
     @Binding var showAddGradeView: Bool
     
     @Binding var currentSchoolYear: SchoolYear?
@@ -33,7 +38,10 @@ struct GradesList: View {
     
     @EnvironmentObject var gradeItemManager: GradeItemManager
     
+    @State private var showingAlert = false
+    
     var body: some View {
+        
         let currentGradeItems = gradeItems.filter {$0.schoolYear?.name == currentSchoolYear?.name}
         
         List {
@@ -49,7 +57,7 @@ struct GradesList: View {
             Text("Insgesamt \(currentGradeItems.count) Noten")
         }
         // TODO: Überlegen, ob PlainListStyle
-//        .listStyle(PlainListStyle())
+        //        .listStyle(PlainListStyle())
         .navigationTitle(currentSchoolYear?.name ?? "Noch kein Schuljahr erstellt") // TODO: Defaultmäßig soll aktuellstes Schuljahr!!
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -64,6 +72,18 @@ struct GradesList: View {
             AddGradeItemView(showAddGradeView: $showAddGradeView, gradeItemManager: gradeItemManager)
                 .environmentObject(gradeItemManager) // Zwingend: Bei Sheetaufruf über Sheetmodifier kann in den erstellten Views nicht auf die hier vorhandenen EnvironmentObjects zugegriffen werden, diese müssen übergeben werden
         })
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Noch kein Schuljahr erstellt"),
+                  message: Text("Du benötigst zuerst ein Schuljahr dem du deine Note zuweisen kannst."),
+                  dismissButton: .default(Text("Jetzt anlegen")) {
+                    
+                  })
+        }
+        .onAppear() {
+            if schoolYears.isEmpty {
+                showingAlert=true
+            }
+        }
     }
 }
 
@@ -91,7 +111,7 @@ struct GradeCell: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .environment(\.locale, Locale.init(identifier: "de"))
-        }
+            }
             Spacer()
             Text(String(gradeItem.value))
                 .font(.title)
