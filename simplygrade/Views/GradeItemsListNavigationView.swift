@@ -42,7 +42,7 @@ struct GradesList: View {
             }
             .onDelete(perform: { indexSet in
                 for index in indexSet {
-                    let gradeItemToDelete = gradeItems[index]
+                    let gradeItemToDelete = currentGradeItems[index]
                     gradeItemManager.delete(gradeItem: gradeItemToDelete)
                 }
             })
